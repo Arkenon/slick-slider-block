@@ -1,0 +1,39 @@
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+
+.wp-block-gb-for-slick-slider-slick-slider {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  padding: 15px;
+  border: 2px dashed darkseagreen;
+
+  &.wp-block-gb-for-slick-slider-slick-slider:focus:after {
+	box-shadow: 0 0 0 0 !important;
+  }
+
+  &.block-editor-block-list__block .block-list-appender {
+	position: sticky;
+  }
+
+  &.block-editor-button-block-appender.components-button.components-button {
+	padding: 12px;
+  }
+
+  .block-list-appender{
+	.block-editor-button-block-appender{
+	  background: #3b5f0a;
+	  border:1px dotted white;
+	  &:hover{
+		background: #588b1e;
+	  }
+	}
+  }
+}
+
+
+

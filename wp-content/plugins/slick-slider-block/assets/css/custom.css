@@ -1,0 +1,15 @@
+.slick-prev:before {
+	content: "<";
+	color: #d3d1d1 !important;
+	font-size: 30px!important;
+}
+
+.slick-next:before {
+	content: ">";
+	color: #d3d1d1 !important;
+	font-size: 30px!important;
+}
+.slick-prev
+{
+	left: -35px!important;
+}
