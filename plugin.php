@@ -4,7 +4,7 @@
  * Description:       This is a very simple slider block. Gutenberg Block for Slick Slider uses Slick Slider to create sliders from core blocks.
  * Requires at least: 6.1
  * Requires PHP:      7.0
- * Version:           1.0.5
+ * Version:           1.0.6
  * Author:            xideathemes
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
@@ -30,7 +30,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 # CONSTANTS
 --------------------------------------------------------------*/
 define( 'GB_SLICK_SLIDER_BLOCK_URL', plugin_dir_url( __FILE__ ) );
-define( 'GB_SLICK_SLIDER_BLOCK_VERSION', '1.0.5' );
+define( 'GB_SLICK_SLIDER_BLOCK_VERSION', '1.0.6' );
 
 /*--------------------------------------------------------------
 # Enqueue Styles

@@ -2,9 +2,9 @@
 Contributors:      xideathemes
 Tags:              block, slider, slider block, slick slider, carousel, carousel block, gutenberg, full site editing
 Requires at least: 6.1
-Tested up to:      6.3
+Tested up to:      6.3.1
 Requires PHP:      7.0
-Stable tag:        1.0.5
+Stable tag:        1.0.6
 Donate link: https://xideathemes.com
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
@@ -13,9 +13,11 @@ Create sliders from core blocks.
 
 == Description ==
 
-Gutenberg Block for Slick Slider Plugin uses Slick Slider to create sliders from core blocks.
-You can convert your blocks to a slider with Gutenberg Block for Slick Slider Plugin. Just add a new Slick Slider Block and start create your own designs.
 This is a very simple and useful slider block.
+
+Gutenberg Block for Slick Slider Plugin uses Slick Slider to create sliders from core blocks.
+You can convert your blocks to a slider with Gutenberg Block for Slick Slider Plugin. Just add a new Slick Slider Block and start creating your own designs.
+
 
 == Installation ==
 
@@ -27,6 +29,10 @@ This is a very simple and useful slider block.
 3. Search for the block within the Block Editor (Gutenberg) and begin using.
 
 == Changelog ==
+
+= 1.0.6 =
+* Successfully tested with WordPress version 6.3.1
+* Plugin description revised.
 
 = 1.0.5 =
 * Successfully tested with WordPress version 6.3
