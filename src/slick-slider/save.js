@@ -19,7 +19,7 @@ export default function save(props) {
 		`"fade":${attr.fade},` +
 		`"speed":${attr.slideSpeed},` +
 		`"centerMode":${attr.infinite},` +
-		`"responsive": [ {"breakpoint": 1920, "settings": {"slidesToShow": ${attr.slidesToShow}, "slidesToScroll": ${attr.slidesToScroll}}}, {"breakpoint": 768, "settings": {"slidesToShow": 2, "slidesToScroll": 1}}, {"breakpoint": 600, "settings": {"slidesToShow": 1, "slidesToScroll": 1,"arrows":false,"dots":true}}]` +
+		`"responsive": ${JSON.stringify(attr.responsive)}` +
 		`}`;
 
 

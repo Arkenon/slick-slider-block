@@ -1,6 +1,10 @@
+import {__} from '@wordpress/i18n';
 import {useBlockProps, InspectorControls, useInnerBlocksProps} from '@wordpress/block-editor';
 import {
 	ToggleControl,
+	Panel,
+	__experimentalHeading as Heading,
+	__experimentalDivider as Divider,
 	PanelBody,
 	PanelRow,
 	__experimentalNumberControl as NumberControl
@@ -23,6 +27,7 @@ export default function Edit(props) {
 			centerMode,
 			adaptiveHeight,
 			fade,
+			responsive
 		}, setAttributes
 	} = props;
 
@@ -35,27 +40,41 @@ export default function Edit(props) {
 			orientation: "horizontal"
 		}
 	);
+
+	function updateResponsiveSettings(breakpoint, key, value){
+		const newResponsiveSettings = [...responsive];
+		const item = newResponsiveSettings.find(
+			a => a.breakpoint === breakpoint
+		);
+
+		if (item) {
+			item.settings[key] = value;
+			setAttributes({ responsive: newResponsiveSettings });
+		}
+	}
+
 	return (
 		<>
 			<section {...innerBlocksProps} />
 
 			<InspectorControls>
-				<PanelBody>
-					<PanelRow>
-						<NumberControl
-							label="Gap between slides "
-							value={slideMargin}
-							onChange={(val) => setAttributes({slideMargin: Number(val)})}
-						/>
-					</PanelRow>
-					<PanelRow>
-						<NumberControl
-							label="Slides to show "
-							value={slidesToShow}
-							onChange={(val) => setAttributes({slidesToShow: Number(val)})}
-						/>
-					</PanelRow>
-					{slidesToShow <= 1 &&
+				<Panel>
+					<PanelBody title={__('General Settings', 'gb-for-slick-slider')} initialOpen={true}>
+						<PanelRow>
+							<NumberControl
+								label="Gap between slides "
+								value={slideMargin}
+								onChange={(val) => setAttributes({slideMargin: Number(val)})}
+							/>
+						</PanelRow>
+						<PanelRow>
+							<NumberControl
+								label="Slides to show "
+								value={slidesToShow}
+								onChange={(val) => setAttributes({slidesToShow: Number(val)})}
+							/>
+						</PanelRow>
+						{slidesToShow <= 1 &&
 						<PanelRow>
 							<ToggleControl
 								label="Fade"
@@ -68,8 +87,8 @@ export default function Edit(props) {
 								onChange={(val) => setAttributes({fade: val})}
 							/>
 						</PanelRow>
-					}
-					{slidesToShow > 1 &&
+						}
+						{slidesToShow > 1 &&
 						<PanelRow>
 							<ToggleControl
 								label="Center Mode"
@@ -82,8 +101,8 @@ export default function Edit(props) {
 								onChange={(val) => setAttributes({centerMode: val})}
 							/>
 						</PanelRow>
-					}
-					{centerMode && slidesToShow > 1 &&
+						}
+						{centerMode && slidesToShow > 1 &&
 						<PanelRow>
 							<ToggleControl
 								label="Infinite loop"
@@ -96,58 +115,58 @@ export default function Edit(props) {
 								onChange={(val) => setAttributes({infinite: val})}
 							/>
 						</PanelRow>
-					}
-					<PanelRow>
-						<NumberControl
-							label="Slides to scroll "
-							value={slidesToScroll}
-							onChange={(val) => setAttributes({slidesToScroll: Number(val)})}
-						/>
-					</PanelRow>
-					<PanelRow>
-						<NumberControl
-							label="Slide speed"
-							value={slideSpeed}
-							onChange={(val) => setAttributes({slideSpeed: Number(val)})}
-						/>
-					</PanelRow>
-					<PanelRow>
-						<ToggleControl
-							label="Show Dots"
-							help={
-								dots
-									? 'Show dots'
-									: 'Hide dots'
-							}
-							checked={dots}
-							onChange={(val) => setAttributes({dots: val})}
-						/>
-					</PanelRow>
-					<PanelRow>
-						<ToggleControl
-							label="Show Arrows"
-							help={
-								arrows
-									? 'Show arrows'
-									: 'Hide arrows'
-							}
-							checked={arrows}
-							onChange={(val) => setAttributes({arrows: val})}
-						/>
-					</PanelRow>
-					<PanelRow>
-						<ToggleControl
-							label="Autoplay"
-							help={
-								autoplay
-									? 'Yes'
-									: 'No'
-							}
-							checked={autoplay}
-							onChange={(val) => setAttributes({autoplay: val})}
-						/>
-					</PanelRow>
-					{autoplay &&
+						}
+						<PanelRow>
+							<NumberControl
+								label="Slides to scroll "
+								value={slidesToScroll}
+								onChange={(val) => setAttributes({slidesToScroll: Number(val)})}
+							/>
+						</PanelRow>
+						<PanelRow>
+							<NumberControl
+								label="Slide speed"
+								value={slideSpeed}
+								onChange={(val) => setAttributes({slideSpeed: Number(val)})}
+							/>
+						</PanelRow>
+						<PanelRow>
+							<ToggleControl
+								label="Show Dots"
+								help={
+									dots
+										? 'Show dots'
+										: 'Hide dots'
+								}
+								checked={dots}
+								onChange={(val) => setAttributes({dots: val})}
+							/>
+						</PanelRow>
+						<PanelRow>
+							<ToggleControl
+								label="Show Arrows"
+								help={
+									arrows
+										? 'Show arrows'
+										: 'Hide arrows'
+								}
+								checked={arrows}
+								onChange={(val) => setAttributes({arrows: val})}
+							/>
+						</PanelRow>
+						<PanelRow>
+							<ToggleControl
+								label="Autoplay"
+								help={
+									autoplay
+										? 'Yes'
+										: 'No'
+								}
+								checked={autoplay}
+								onChange={(val) => setAttributes({autoplay: val})}
+							/>
+						</PanelRow>
+						{autoplay &&
 						<PanelRow>
 							<NumberControl
 								label="Autoplay speed "
@@ -155,20 +174,76 @@ export default function Edit(props) {
 								onChange={(val) => setAttributes({autoplaySpeed: Number(val)})}
 							/>
 						</PanelRow>
-					}
-					<PanelRow>
-						<ToggleControl
-							label="Adaptive Height"
-							help={
-								adaptiveHeight
-									? 'Yes'
-									: 'No'
-							}
-							checked={adaptiveHeight}
-							onChange={(val) => setAttributes({adaptiveHeight: val})}
-						/>
-					</PanelRow>
-				</PanelBody>
+						}
+						<PanelRow>
+							<ToggleControl
+								label="Adaptive Height"
+								help={
+									adaptiveHeight
+										? 'Yes'
+										: 'No'
+								}
+								checked={adaptiveHeight}
+								onChange={(val) => setAttributes({adaptiveHeight: val})}
+							/>
+						</PanelRow>
+					</PanelBody>
+				</Panel>
+
+				<Panel>
+					<PanelBody title={__('Responsive Settings', 'gb-for-slick-slider')} initialOpen={false}>
+						{responsive.map(function (breakpoint, index) {
+							return (
+								<div key={index}>
+									<Divider />
+									<Heading level={2}>Breakpoint: {breakpoint.breakpoint}px</Heading>
+									<Divider />
+									<PanelRow>
+										<NumberControl
+											label="Slides to show "
+											value={breakpoint.settings.slidesToShow}
+											onChange={(val) => updateResponsiveSettings(breakpoint.breakpoint,'slidesToShow',val)}
+										/>
+									</PanelRow>
+									<PanelRow>
+										<NumberControl
+											label="Slides to scroll "
+											value={breakpoint.settings.slidesToScroll}
+											onChange={(val) => updateResponsiveSettings(breakpoint.breakpoint,'slidesToScroll',val)}
+										/>
+									</PanelRow>
+									<PanelRow>
+										<ToggleControl
+											label="Show Arrows"
+											help={
+												breakpoint.settings.arrows
+													? 'Show arrows'
+													: 'Hide arrows'
+											}
+											checked={breakpoint.settings.arrows}
+											onChange={(val) => updateResponsiveSettings(breakpoint.breakpoint,'arrows',val)}
+										/>
+									</PanelRow>
+									<PanelRow>
+										<ToggleControl
+											label="Show Dots"
+											help={
+												breakpoint.settings.dots
+													? 'Show dots'
+													: 'Hide dots'
+											}
+											checked={breakpoint.settings.dots}
+											onChange={(val) => updateResponsiveSettings(breakpoint.breakpoint,'dots',val)}
+										/>
+									</PanelRow>
+
+								</div>
+
+							)
+						})}
+
+					</PanelBody>
+				</Panel>
 			</InspectorControls>
 		</>
 	);

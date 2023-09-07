@@ -31,8 +31,7 @@ You can convert your blocks to a slider with Gutenberg Block for Slick Slider Pl
 == Changelog ==
 
 = 1.0.6 =
-* Successfully tested with WordPress version 6.3.1
-* Plugin description revised.
+* Responsive settings added
 
 = 1.0.5 =
 * Successfully tested with WordPress version 6.3
