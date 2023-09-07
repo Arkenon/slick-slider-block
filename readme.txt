@@ -1,11 +1,10 @@
 === Gutenberg Block for Slick Slider  ===
-Contributors:      xideathemes
+Contributors:      arkenon, xideathemes
 Tags:              block, slider, slider block, slick slider, carousel, carousel block, gutenberg, full site editing
 Requires at least: 6.1
 Tested up to:      6.3.1
 Requires PHP:      7.0
-Stable tag:        1.0.6
-Donate link: https://xideathemes.com
+Stable tag:        1.0.7
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -29,6 +28,9 @@ You can convert your blocks to a slider with Gutenberg Block for Slick Slider Pl
 3. Search for the block within the Block Editor (Gutenberg) and begin using.
 
 == Changelog ==
+
+= 1.0.7 =
+* Added a new contributor
 
 = 1.0.6 =
 * Responsive settings added
