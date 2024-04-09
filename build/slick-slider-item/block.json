@@ -8,7 +8,13 @@
   "icon": "welcome-add-page",
   "description": "Slick Slider Block item. This is an inner block. Add core blocks in it.",
   "supports": {
-    "html": false
+    "html": false,
+    "layout": true,
+    "spacing": {
+      "padding": true,
+      "margin": true,
+      "blockGap": true
+    }
   },
   "usesContext": [
     "gb-for-slick-slider/slidesToShow",

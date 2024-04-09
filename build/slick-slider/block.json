@@ -8,7 +8,12 @@
   "icon": "admin-page",
   "description": "Slick Slider Block wrapper.",
   "supports": {
-    "html": false
+    "html": false,
+    "align": true,
+    "spacing": {
+      "padding": true,
+      "margin": true
+    }
   },
   "providesContext": {
     "gb-for-slick-slider/slidesToShow": "slidesToShow",

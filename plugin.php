@@ -1,10 +1,10 @@
 <?php
 /**
- * Plugin Name:       Gutenberg Block for Slick Slider
- * Description:       This is a very simple slider block. Gutenberg Block for Slick Slider uses Slick Slider to create sliders from core blocks.
+ * Plugin Name:       Simple Slider Block
+ * Description:       This is a very simple slider block. Simple Slider Block uses Slick Slider to create sliders from core blocks.
  * Requires at least: 6.1
  * Requires PHP:      7.4
- * Version:           1.0.8
+ * Version:           1.1.0
  * Author:            Kadim Gültekin
  * Author URI:        https://github.com/Arkenon
  * License:           GPL-2.0-or-later
