@@ -1,3 +1,4 @@
+import { useState } from '@wordpress/element';
 import {__} from '@wordpress/i18n';
 import {useBlockProps, InspectorControls, useInnerBlocksProps} from '@wordpress/block-editor';
 import {
@@ -41,14 +42,16 @@ export default function Edit(props) {
 		}
 	);
 
+	const [localResponsive, setLocalResponsive] = useState(responsive);
 	function updateResponsiveSettings(breakpoint, key, value) {
-		const newResponsiveSettings = [...responsive];
+		const newResponsiveSettings = [...localResponsive];
 		const item = newResponsiveSettings.find(
 			a => a.breakpoint === breakpoint
 		);
 
 		if (item) {
 			item.settings[key] = value;
+			setLocalResponsive(newResponsiveSettings);
 			setAttributes({responsive: newResponsiveSettings});
 		}
 	}

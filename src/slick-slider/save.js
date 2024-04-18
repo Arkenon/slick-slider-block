@@ -18,7 +18,7 @@ export default function save(props) {
 		`"autoplaySpeed":${attr.autoplaySpeed},` +
 		`"fade":${attr.fade},` +
 		`"speed":${attr.slideSpeed},` +
-		`"centerMode":${attr.infinite},` +
+		`"centerMode":${attr.centerMode},` +
 		`"responsive": ${JSON.stringify(attr.responsive)}` +
 		`}`;
 
