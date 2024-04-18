@@ -4,7 +4,7 @@
  * Description:       This is a very simple slider block. Simple Slider Block uses Slick Slider to create sliders from core blocks.
  * Requires at least: 6.1
  * Requires PHP:      7.4
- * Version:           1.1.0
+ * Version:           1.1.1
  * Author:            Kadim Gültekin
  * Author URI:        https://github.com/Arkenon
  * License:           GPL-2.0-or-later
@@ -31,7 +31,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 # CONSTANTS
 --------------------------------------------------------------*/
 define( 'GB_SLICK_SLIDER_BLOCK_URL', plugin_dir_url( __FILE__ ) );
-define( 'GB_SLICK_SLIDER_BLOCK_VERSION', '1.0.8' );
+define( 'GB_SLICK_SLIDER_BLOCK_VERSION', '1.1.1' );
 
 /*--------------------------------------------------------------
 # Enqueue Styles

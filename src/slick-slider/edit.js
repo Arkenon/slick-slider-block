@@ -41,7 +41,7 @@ export default function Edit(props) {
 		}
 	);
 
-	function updateResponsiveSettings(breakpoint, key, value){
+	function updateResponsiveSettings(breakpoint, key, value) {
 		const newResponsiveSettings = [...responsive];
 		const item = newResponsiveSettings.find(
 			a => a.breakpoint === breakpoint
@@ -49,7 +49,15 @@ export default function Edit(props) {
 
 		if (item) {
 			item.settings[key] = value;
-			setAttributes({ responsive: newResponsiveSettings });
+			setAttributes({responsive: newResponsiveSettings});
+		}
+	}
+
+	const handleSlidesToShow = (val) => {
+		setAttributes({slidesToShow: Number(val)})
+		if (Number(val) === 1) {
+			console.log(val)
+			setAttributes({centerMode: false});
 		}
 	}
 
@@ -71,38 +79,37 @@ export default function Edit(props) {
 							<NumberControl
 								label="Slides to show "
 								value={slidesToShow}
-								onChange={(val) => setAttributes({slidesToShow: Number(val)})}
+								onChange={handleSlidesToShow}
 							/>
 						</PanelRow>
 						{slidesToShow <= 1 &&
-						<PanelRow>
-							<ToggleControl
-								label="Fade"
-								help={
-									fade
-										? 'Yes'
-										: 'No'
-								}
-								checked={fade}
-								onChange={(val) => setAttributes({fade: val})}
-							/>
-						</PanelRow>
+							<PanelRow>
+								<ToggleControl
+									label="Fade"
+									help={
+										fade
+											? 'Yes'
+											: 'No'
+									}
+									checked={fade}
+									onChange={(val) => setAttributes({fade: val})}
+								/>
+							</PanelRow>
 						}
 						{slidesToShow > 1 &&
-						<PanelRow>
-							<ToggleControl
-								label="Center Mode"
-								help={
-									centerMode
-										? 'Yes'
-										: 'No'
-								}
-								checked={centerMode}
-								onChange={(val) => setAttributes({centerMode: val})}
-							/>
-						</PanelRow>
+							<PanelRow>
+								<ToggleControl
+									label="Center Mode"
+									help={
+										centerMode
+											? 'Yes'
+											: 'No'
+									}
+									checked={centerMode}
+									onChange={(val) => setAttributes({centerMode: val})}
+								/>
+							</PanelRow>
 						}
-						{centerMode && slidesToShow > 1 &&
 						<PanelRow>
 							<ToggleControl
 								label="Infinite loop"
@@ -115,7 +122,6 @@ export default function Edit(props) {
 								onChange={(val) => setAttributes({infinite: val})}
 							/>
 						</PanelRow>
-						}
 						<PanelRow>
 							<NumberControl
 								label="Slides to scroll "
@@ -167,13 +173,13 @@ export default function Edit(props) {
 							/>
 						</PanelRow>
 						{autoplay &&
-						<PanelRow>
-							<NumberControl
-								label="Autoplay speed "
-								value={autoplaySpeed}
-								onChange={(val) => setAttributes({autoplaySpeed: Number(val)})}
-							/>
-						</PanelRow>
+							<PanelRow>
+								<NumberControl
+									label="Autoplay speed "
+									value={autoplaySpeed}
+									onChange={(val) => setAttributes({autoplaySpeed: Number(val)})}
+								/>
+							</PanelRow>
 						}
 						<PanelRow>
 							<ToggleControl
@@ -195,21 +201,21 @@ export default function Edit(props) {
 						{responsive.map(function (breakpoint, index) {
 							return (
 								<div key={index}>
-									<Divider />
+									<Divider/>
 									<Heading level={2}>Breakpoint: {breakpoint.breakpoint}px</Heading>
-									<Divider />
+									<Divider/>
 									<PanelRow>
 										<NumberControl
 											label="Slides to show "
 											value={breakpoint.settings.slidesToShow}
-											onChange={(val) => updateResponsiveSettings(breakpoint.breakpoint,'slidesToShow',val)}
+											onChange={(val) => updateResponsiveSettings(breakpoint.breakpoint, 'slidesToShow', val)}
 										/>
 									</PanelRow>
 									<PanelRow>
 										<NumberControl
 											label="Slides to scroll "
 											value={breakpoint.settings.slidesToScroll}
-											onChange={(val) => updateResponsiveSettings(breakpoint.breakpoint,'slidesToScroll',val)}
+											onChange={(val) => updateResponsiveSettings(breakpoint.breakpoint, 'slidesToScroll', val)}
 										/>
 									</PanelRow>
 									<PanelRow>
@@ -221,7 +227,7 @@ export default function Edit(props) {
 													: 'Hide arrows'
 											}
 											checked={breakpoint.settings.arrows}
-											onChange={(val) => updateResponsiveSettings(breakpoint.breakpoint,'arrows',val)}
+											onChange={(val) => updateResponsiveSettings(breakpoint.breakpoint, 'arrows', val)}
 										/>
 									</PanelRow>
 									<PanelRow>
@@ -233,7 +239,7 @@ export default function Edit(props) {
 													: 'Hide dots'
 											}
 											checked={breakpoint.settings.dots}
-											onChange={(val) => updateResponsiveSettings(breakpoint.breakpoint,'dots',val)}
+											onChange={(val) => updateResponsiveSettings(breakpoint.breakpoint, 'dots', val)}
 										/>
 									</PanelRow>
 
