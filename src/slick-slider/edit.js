@@ -1,4 +1,4 @@
-import { useState } from '@wordpress/element';
+import { useState, useEffect } from '@wordpress/element';
 import {__} from '@wordpress/i18n';
 import {useBlockProps, InspectorControls, useInnerBlocksProps} from '@wordpress/block-editor';
 import {
@@ -43,24 +43,34 @@ export default function Edit(props) {
 	);
 
 	const [localResponsive, setLocalResponsive] = useState(responsive);
-	function updateResponsiveSettings(breakpoint, key, value) {
-		const newResponsiveSettings = [...localResponsive];
-		const item = newResponsiveSettings.find(
-			a => a.breakpoint === breakpoint
-		);
 
-		if (item) {
-			item.settings[key] = value;
-			setLocalResponsive(newResponsiveSettings);
-			setAttributes({responsive: newResponsiveSettings});
-		}
+	useEffect(() => {
+		setLocalResponsive(responsive);
+	}, [responsive]);
+
+	function updateResponsiveSettings(breakpoint, key, value) {
+		const newResponsiveSettings = localResponsive.map((item) => {
+			if (item.breakpoint === breakpoint) {
+				return {
+					...item,
+					settings: {
+						...item.settings,
+						[key]: value
+					}
+				};
+			}
+			return item;
+		});
+		setLocalResponsive(newResponsiveSettings);
+		setAttributes({ responsive: newResponsiveSettings });
 	}
 
 	const handleSlidesToShow = (val) => {
-		setAttributes({slidesToShow: Number(val)})
-		if (Number(val) === 1) {
-			console.log(val)
+		setAttributes({slidesToShow: val})
+		if (val === 1) {
 			setAttributes({centerMode: false});
+		} else {
+			setAttributes({fade: false});
 		}
 	}
 
@@ -82,7 +92,7 @@ export default function Edit(props) {
 							<NumberControl
 								label="Slides to show "
 								value={slidesToShow}
-								onChange={handleSlidesToShow}
+								onChange={(val)=> handleSlidesToShow(Number(val))}
 							/>
 						</PanelRow>
 						{slidesToShow <= 1 &&
@@ -201,7 +211,7 @@ export default function Edit(props) {
 
 				<Panel>
 					<PanelBody title={__('Responsive Settings', 'gb-for-slick-slider')} initialOpen={false}>
-						{responsive.map(function (breakpoint, index) {
+						{localResponsive.map(function (breakpoint, index) {
 							return (
 								<div key={index}>
 									<Divider/>
@@ -211,14 +221,14 @@ export default function Edit(props) {
 										<NumberControl
 											label="Slides to show "
 											value={breakpoint.settings.slidesToShow}
-											onChange={(val) => updateResponsiveSettings(breakpoint.breakpoint, 'slidesToShow', val)}
+											onChange={(val) => updateResponsiveSettings(breakpoint.breakpoint, 'slidesToShow', Number(val))}
 										/>
 									</PanelRow>
 									<PanelRow>
 										<NumberControl
 											label="Slides to scroll "
 											value={breakpoint.settings.slidesToScroll}
-											onChange={(val) => updateResponsiveSettings(breakpoint.breakpoint, 'slidesToScroll', val)}
+											onChange={(val) => updateResponsiveSettings(breakpoint.breakpoint, 'slidesToScroll', Number(val))}
 										/>
 									</PanelRow>
 									<PanelRow>
@@ -245,12 +255,9 @@ export default function Edit(props) {
 											onChange={(val) => updateResponsiveSettings(breakpoint.breakpoint, 'dots', val)}
 										/>
 									</PanelRow>
-
 								</div>
-
 							)
 						})}
-
 					</PanelBody>
 				</Panel>
 			</InspectorControls>
