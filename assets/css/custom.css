@@ -1,15 +1,28 @@
+.wp-block-gb-for-slick-slider-slick-slider {
+	overflow: hidden;
+}
+
+.slick-arrow {
+	z-index: 99;
+}
+
 .slick-prev:before {
 	content: "<";
 	color: #d3d1d1 !important;
-	font-size: 30px!important;
+	font-size: 30px !important;
 }
 
 .slick-next:before {
 	content: ">";
 	color: #d3d1d1 !important;
-	font-size: 30px!important;
+	font-size: 30px !important;
 }
-.slick-prev
-{
-	left: -35px!important;
+
+body:not(.rtl) .slick-prev {
+	left: -35px !important;
+}
+
+body.rtl .slick-prev {
+	right: -35px !important;
+	left: auto;
 }
