@@ -4,7 +4,7 @@ Tags:              slider, slider block, carousel, gutenberg, block slider
 Requires at least: 6.1
 Tested up to:      6.5
 Requires PHP:      7.4
-Stable tag:        1.1.3
+Stable tag:        1.1.4
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -29,6 +29,10 @@ Just add a new Slick Slider Block and start creating your own designs.
 3. Search for the block within the Block Editor (Gutenberg) and begin using.
 
 == Changelog ==
+
+= 1.1.3 =
+
+* Add: Automatic RTL support
 
 = 1.1.3 =
 

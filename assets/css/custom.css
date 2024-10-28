@@ -13,3 +13,7 @@
 {
 	left: -35px!important;
 }
+
+[dir='rtl'] .slick-prev{
+	right: -35px!important;
+}

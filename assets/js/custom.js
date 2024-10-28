@@ -1,7 +1,7 @@
 (function ($) {
-
-	$(".gb-for-slick-slider").not('.slick-initialized').slick();
-	$(".wp-block-gb-for-slick-slider-slick-slider").not('.slick-initialized').slick();
-
+	$(".gb-for-slick-slider, .wp-block-gb-for-slick-slider-slick-slider")
+		.not('.slick-initialized')
+		.slick({
+			rtl: $('body').hasClass('rtl'),
+		});
 })(window.jQuery);
-
