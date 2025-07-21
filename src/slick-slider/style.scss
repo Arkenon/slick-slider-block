@@ -104,14 +104,15 @@
 	&.arrow-border-style-none {
 		.slick-prev,
 		.slick-next {
-			background-color: transparent;
-			color: #d3d1d1;
+			background-color: var(--arrow-bg-color);
+			color: white;
 			height: 40px;
 			width: 40px;
-			opacity: 0.5;
+			opacity: 0.8;
 
 			&:before {
 				line-height: 0.6;
+				color: white;
 			}
 
 			&:hover {
@@ -138,6 +139,51 @@
 	&.arrow-border-style-none {
 		.slick-prev, .slick-next {
 			border: none;
+		}
+	}
+
+	// Arrow position styles
+	&.arrow-position-bottom {
+		// Add bottom padding to slider container to make room for arrows
+		.slick-slider {
+			padding-bottom: 80px;
+		}
+
+		.slick-prev,
+		.slick-next {
+			position: absolute;
+			bottom: -70px;
+			top: auto;
+			z-index: 999;
+		}
+
+		// Create a centered container for arrows
+		.slick-prev {
+			left: calc(50% - 50px)!important; // Center minus half of total width (40px button + 10px gap)
+		}
+
+		.slick-next {
+			left: calc(50% + 10px)!important; // Center plus gap
+		}
+
+		// RTL support for bottom positioned arrows
+		[dir="rtl"] &,
+		&:dir(rtl) {
+			.slick-prev {
+				left: calc(50% + 10px);
+			}
+
+			.slick-next {
+				left: calc(50% - 50px);
+			}
+		}
+
+		// Full-width adjustments for bottom arrows
+		&.alignfull {
+			.slick-prev,
+			.slick-next {
+				bottom: -60px;
+			}
 		}
 	}
 }

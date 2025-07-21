@@ -39,6 +39,7 @@ Just add a new Slick Slider Block and start creating your own designs.
 * Added: Arrow styles
 * Converted: Slick Slider Block into dynamic block
 * Fixed: RTL support problem
+* Added: Arrow position option and arrow background color option
 
 = 1.1.4 =
 

@@ -76,6 +76,14 @@
 			"type": "string",
 			"default": "rounded"
 		},
+		"arrowBackgroundColor": {
+			"type": "string",
+			"default": "#333333"
+		},
+		"arrowPosition": {
+			"type": "string",
+			"default": "sides"
+		},
 		"responsive": {
 			"type": "array",
 			"default": [

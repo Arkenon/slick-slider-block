@@ -13,7 +13,8 @@ import {
 	Modal,
 	Card,
 	CardBody,
-	SelectControl
+	SelectControl,
+	ColorPicker
 } from '@wordpress/components';
 import {useSelect, dispatch} from '@wordpress/data';
 import './editor.scss';
@@ -37,7 +38,9 @@ export default function Edit(props) {
 			fade,
 			responsive,
 			arrowStyle,
-			arrowBorderStyle
+			arrowBorderStyle,
+			arrowBackgroundColor,
+			arrowPosition
 		}, setAttributes
 	} = props;
 
@@ -270,6 +273,46 @@ export default function Edit(props) {
 						</PanelRow>
 						<PanelRow>
 							<ToggleControl
+								label="Autoplay"
+								help={
+									autoplay
+										? 'Yes'
+										: 'No'
+								}
+								checked={autoplay}
+								__nextHasNoMarginBottom
+								onChange={(val) => setAttributes({autoplay: val})}
+							/>
+						</PanelRow>
+						{autoplay &&
+							<PanelRow>
+								<NumberControl
+									label="Autoplay speed "
+									value={autoplaySpeed}
+									onChange={(val) => setAttributes({autoplaySpeed: Number(val)})}
+									__next40pxDefaultSize
+								/>
+							</PanelRow>
+						}
+						<PanelRow>
+							<ToggleControl
+								label="Adaptive Height"
+								help={
+									adaptiveHeight
+										? 'Yes'
+										: 'No'
+								}
+								checked={adaptiveHeight}
+								__nextHasNoMarginBottom
+								onChange={(val) => setAttributes({adaptiveHeight: val})}
+							/>
+						</PanelRow>
+					</PanelBody>
+				</Panel>
+				<Panel>
+					<PanelBody title={__('Arrow Settings', 'gb-for-slick-slider')} initialOpen={false}>
+						<PanelRow>
+							<ToggleControl
 								label="Show Arrows"
 								help={
 									arrows
@@ -314,42 +357,34 @@ export default function Edit(props) {
 								/>
 							</PanelRow>
 						}
-						<PanelRow>
-							<ToggleControl
-								label="Autoplay"
-								help={
-									autoplay
-										? 'Yes'
-										: 'No'
-								}
-								checked={autoplay}
-								__nextHasNoMarginBottom
-								onChange={(val) => setAttributes({autoplay: val})}
-							/>
-						</PanelRow>
-						{autoplay &&
+						{arrows &&
 							<PanelRow>
-								<NumberControl
-									label="Autoplay speed "
-									value={autoplaySpeed}
-									onChange={(val) => setAttributes({autoplaySpeed: Number(val)})}
+								<div style={{marginBottom: '16px'}}>
+									<label style={{display: 'block', marginBottom: '8px', fontWeight: 500}}>
+										{__('Arrow Background Color', 'gb-for-slick-slider')}
+									</label>
+									<ColorPicker
+										color={arrowBackgroundColor}
+										onChangeComplete={(color) => setAttributes({arrowBackgroundColor: color.hex})}
+									/>
+								</div>
+							</PanelRow>
+						}
+						{arrows && !dots &&
+							<PanelRow>
+								<SelectControl
+									label="Arrow Position"
+									value={arrowPosition}
 									__next40pxDefaultSize
+									__nextHasNoMarginBottom
+									options={[
+										{label: 'Sides (Default)', value: 'sides'},
+										{label: 'Bottom Center', value: 'bottom'}
+									]}
+									onChange={(val) => setAttributes({arrowPosition: val})}
 								/>
 							</PanelRow>
 						}
-						<PanelRow>
-							<ToggleControl
-								label="Adaptive Height"
-								help={
-									adaptiveHeight
-										? 'Yes'
-										: 'No'
-								}
-								checked={adaptiveHeight}
-								__nextHasNoMarginBottom
-								onChange={(val) => setAttributes({adaptiveHeight: val})}
-							/>
-						</PanelRow>
 					</PanelBody>
 				</Panel>
 

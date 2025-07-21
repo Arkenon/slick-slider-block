@@ -23,6 +23,8 @@ $slides_to_scroll = $attributes['slidesToScroll'] ?? 1;
 $slide_margin = $attributes['slideMargin'] ?? 0;
 $arrow_style = $attributes['arrowStyle'] ?? 'chevron';
 $arrow_border_style = $attributes['arrowBorderStyle'] ?? 'rounded';
+$arrow_background_color = $attributes['arrowBackgroundColor'] ?? '#333333';
+$arrow_position = $attributes['arrowPosition'] ?? 'sides';
 $responsive = $attributes['responsive'] ?? [];
 
 // Build Slick options JSON
@@ -41,10 +43,20 @@ $slick_options = [
 	'responsive' => $responsive
 ];
 
-// Create arrow style class
+// Create arrow style classes
 $arrow_style_class = $arrow_style ? 'arrow-style-' . $arrow_style : '';
 $arrow_border_class = $arrow_border_style ? 'arrow-border-style-' . $arrow_border_style : '';
-$custom_arrow_class = $arrow_style_class . ' ' . $arrow_border_class;
+$arrow_position_class = $arrow_position ? 'arrow-position-' . $arrow_position : '';
+$custom_arrow_class = trim($arrow_style_class . ' ' . $arrow_border_class . ' ' . $arrow_position_class);
+
+// Create CSS custom properties for dynamic styling
+$inline_styles = '';
+if ($arrow_background_color) {
+	$inline_styles = sprintf(
+		'style="--arrow-bg-color: %s;"',
+		esc_attr($arrow_background_color, '#333333')
+	);
+}
 
 // Get wrapper attributes
 $wrapper_attributes = get_block_wrapper_attributes([
@@ -62,6 +74,6 @@ if (!empty($block->inner_blocks)) {
 
 // Render the block
 ?>
-<section <?php echo $wrapper_attributes; ?>>
+<section <?php echo $wrapper_attributes; ?> <?php echo $inline_styles; ?>>
 	<?php echo $inner_blocks_content; ?>
 </section>
