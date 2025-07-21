@@ -38,6 +38,7 @@ Just add a new Slick Slider Block and start creating your own designs.
 * Added: Prebuild templates (patterns)
 * Added: Arrow styles
 * Converted: Slick Slider Block into dynamic block
+* Fixed: RTL support problem
 
 = 1.1.4 =
 
