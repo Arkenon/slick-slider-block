@@ -1,19 +1,24 @@
+/*
+ * Contains custom styles for the Slick Slider.
+ * This file is used to override default styles and add custom styles for the slider.
+ */
+
 .slick-prev:before {
-	content: "<";
+	font-family: 'system-ui' !important;
 	color: #d3d1d1 !important;
-	font-size: 30px!important;
+	font-size: 30px !important;
 }
 
 .slick-next:before {
-	content: ">";
+	font-family: 'system-ui' !important;
 	color: #d3d1d1 !important;
-	font-size: 30px!important;
-}
-.slick-prev
-{
-	left: -35px!important;
+	font-size: 30px !important;
 }
 
-[dir='rtl'] .slick-prev{
-	right: -35px!important;
+.slick-prev {
+	left: -35px !important;
+}
+
+[dir='rtl'] .slick-prev {
+	right: -35px !important;
 }

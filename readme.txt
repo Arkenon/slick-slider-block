@@ -2,9 +2,9 @@
 Contributors:      arkenon, xideathemes
 Tags:              slider, slider block, carousel, gutenberg, block slider
 Requires at least: 6.1
-Tested up to:      6.5
+Tested up to:      6.8
 Requires PHP:      7.4
-Stable tag:        1.1.4
+Stable tag:        1.1.5
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,7 +12,9 @@ Create sliders from core blocks.
 
 == Description ==
 
-This is a very simple and useful slider block.
+A Gutenberg block for creating a simple slider using Slick Slider with core blocks.
+
+It is compatible with the core blocks like Cover, Image, and more.
 
 Simple Slider Block Plugin uses Slick Slider to create sliders from core blocks.
 You can convert your blocks to a slider with Simple Slider Block Plugin.
@@ -30,7 +32,14 @@ Just add a new Slick Slider Block and start creating your own designs.
 
 == Changelog ==
 
-= 1.1.3 =
+= 1.1.5 =
+
+* Tested up to: WordPress 6.8
+* Added: Prebuild templates (patterns)
+* Added: Arrow styles
+* Converted: Slick Slider Block into dynamic block
+
+= 1.1.4 =
 
 * Add: Automatic RTL support
 

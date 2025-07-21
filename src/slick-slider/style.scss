@@ -6,5 +6,117 @@
  */
 
 .wp-block-gb-for-slick-slider-slick-slider {
+	//position: relative;
 
+	// Fix for full-width sliders
+	&.alignfull {
+		.slick-prev {
+			left: 35px !important;
+			z-index: 999;
+		}
+
+		.slick-next {
+			right: 35px !important;
+			z-index: 999;
+		}
+	}
+
+	// Arrow Style Variants
+	&.arrow-style-chevron {
+		.slick-prev {
+			&:before {
+				content: "<" !important;
+			}
+		}
+
+		.slick-next {
+			&:before {
+				content: ">" !important;
+			}
+		}
+	}
+
+	&.arrow-style-solid-triangle {
+		.slick-prev {
+			&:before{
+				content: "⮜" !important;
+			}
+		}
+
+		.slick-next {
+			&:before{
+				content: "⮞" !important;
+			}
+		}
+	}
+
+	&.arrow-style-triangle {
+		.slick-prev {
+			&:before {
+				content: "⯇" !important;
+			}
+		}
+
+		.slick-next {
+			&:before {
+				content: "⯈" !important;
+			}
+		}
+	}
+
+	&.arrow-border-style-square {
+		.slick-prev,
+		.slick-next {
+			border: 1px solid #d3d1d1;
+			border-radius: 0;
+			background-color: transparent;
+			color: #d3d1d1;
+			height: 50px;
+			width: 50px;
+			opacity: 0.5;
+			&:before {
+				line-height: 0.6;
+			}
+			&:hover {
+				opacity: 1;
+			}
+		}
+	}
+
+	&.arrow-border-style-rounded {
+		.slick-prev,
+		.slick-next {
+			border: 1px solid #d3d1d1;
+			border-radius: 50%;
+			background-color: transparent;
+			color: #d3d1d1;
+			height: 50px;
+			width: 50px;
+			opacity: 0.5;
+			&:before {
+				line-height: 0.6;
+			}
+			&:hover {
+				opacity: 1;
+			}
+		}
+	}
+
+	&.arrow-border-style-none {
+		.slick-prev,
+		.slick-next {
+			border: none;
+			background-color: transparent;
+			color: #d3d1d1;
+			height: 50px;
+			width: 50px;
+			opacity: 0.5;
+			&:before {
+				line-height: 0.6;
+			}
+			&:hover {
+				opacity: 1;
+			}
+		}
+	}
 }

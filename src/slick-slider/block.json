@@ -68,6 +68,14 @@
 			"type": "number",
 			"default": 0
 		},
+		"arrowStyle": {
+			"type": "string",
+			"default": "chevron"
+		},
+		"arrowBorderStyle": {
+			"type": "string",
+			"default": "rounded"
+		},
 		"responsive": {
 			"type": "array",
 			"default": [
@@ -113,5 +121,6 @@
 	"textdomain": "gb-for-slick-slider",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
-	"style": "file:./style-index.css"
+	"style": "file:./style-index.css",
+	"render": "file:./render.php"
 }
