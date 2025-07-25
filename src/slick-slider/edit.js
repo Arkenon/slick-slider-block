@@ -389,6 +389,7 @@ export default function Edit(props) {
 											__next40pxDefaultSize
 											__nextHasNoMarginBottom
 											options={[
+												{label: 'Circle', value: 'circle'},
 												{label: 'Rounded', value: 'rounded'},
 												{label: 'Square', value: 'square'},
 												{label: 'None', value: 'none'}
@@ -403,7 +404,6 @@ export default function Edit(props) {
 											__next40pxDefaultSize
 											__nextHasNoMarginBottom
 											options={[
-												{label: 'Circle', value: 'circle'},
 												{label: 'Rounded', value: 'rounded'},
 												{label: 'Square', value: 'square'},
 												{label: 'None', value: 'none'}
