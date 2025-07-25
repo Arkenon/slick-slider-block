@@ -133,7 +133,8 @@ export default function Edit(props) {
 	const handlePatternSelect = (pattern) => {
 		setPatternSelected(true);
 		setPatternModalOpen(false);
-		if (pattern.id === 1) {
+		// Tüm pattern'ler için blocks varsa ekle
+		if (pattern.blocks && pattern.blocks.length > 0) {
 			insertPatternBlocks(pattern);
 		}
 	};
@@ -189,7 +190,7 @@ export default function Edit(props) {
 						<PanelBody title={__('General Settings', 'gb-for-slick-slider')} initialOpen={true}>
 							<PanelRow>
 								<NumberControl
-									label={__('Gap between slides','gb-for-slick-slider')}
+									label={__('Gap between slides (px)', 'gb-for-slick-slider')}
 									min={0}
 									value={slideMargin}
 									onChange={(val) => setAttributes({slideMargin: Number(val)})}
@@ -198,7 +199,7 @@ export default function Edit(props) {
 							</PanelRow>
 							<PanelRow>
 								<NumberControl
-									label="Slides to show "
+									label={__('Slides to show', 'gb-for-slick-slider')}
 									min={1}
 									value={slidesToShow}
 									onChange={(val) => handleSlidesToShow(Number(val))}
@@ -208,12 +209,7 @@ export default function Edit(props) {
 							{slidesToShow <= 1 &&
 								<PanelRow>
 									<ToggleControl
-										label="Fade"
-										help={
-											fade
-												? 'Yes'
-												: 'No'
-										}
+										label={__('Fade', 'gb-for-slick-slider')}
 										checked={fade}
 										onChange={(val) => setAttributes({fade: val})}
 										__nextHasNoMarginBottom
@@ -223,12 +219,7 @@ export default function Edit(props) {
 							{slidesToShow > 1 &&
 								<PanelRow>
 									<ToggleControl
-										label="Center Mode"
-										help={
-											centerMode
-												? 'Yes'
-												: 'No'
-										}
+										label={__('Center Mode', 'gb-for-slick-slider')}
 										checked={centerMode}
 										__nextHasNoMarginBottom
 										onChange={(val) => setAttributes({centerMode: val})}
@@ -236,21 +227,8 @@ export default function Edit(props) {
 								</PanelRow>
 							}
 							<PanelRow>
-								<ToggleControl
-									label="Infinite loop"
-									help={
-										infinite
-											? 'Yes'
-											: 'No'
-									}
-									checked={infinite}
-									__nextHasNoMarginBottom
-									onChange={(val) => setAttributes({infinite: val})}
-								/>
-							</PanelRow>
-							<PanelRow>
 								<NumberControl
-									label="Slides to scroll "
+									label={__('Slides to scroll', 'gb-for-slick-slider')}
 									value={slidesToScroll}
 									onChange={(val) => setAttributes({slidesToScroll: Number(val)})}
 									__next40pxDefaultSize
@@ -258,7 +236,7 @@ export default function Edit(props) {
 							</PanelRow>
 							<PanelRow>
 								<NumberControl
-									label="Slide speed"
+									label={__('Slide speed', 'gb-for-slick-slider')}
 									value={slideSpeed}
 									onChange={(val) => setAttributes({slideSpeed: Number(val)})}
 									__next40pxDefaultSize
@@ -266,25 +244,7 @@ export default function Edit(props) {
 							</PanelRow>
 							<PanelRow>
 								<ToggleControl
-									label="Show Dots"
-									help={
-										dots
-											? 'Show dots'
-											: 'Hide dots'
-									}
-									checked={dots}
-									__nextHasNoMarginBottom
-									onChange={(val) => setAttributes({dots: val})}
-								/>
-							</PanelRow>
-							<PanelRow>
-								<ToggleControl
-									label="Autoplay"
-									help={
-										autoplay
-											? 'Yes'
-											: 'No'
-									}
+									label={__('Autoplay', 'gb-for-slick-slider')}
 									checked={autoplay}
 									__nextHasNoMarginBottom
 									onChange={(val) => setAttributes({autoplay: val})}
@@ -293,7 +253,7 @@ export default function Edit(props) {
 							{autoplay &&
 								<PanelRow>
 									<NumberControl
-										label="Autoplay speed "
+										label={__('Autoplay speed', 'gb-for-slick-slider')}
 										value={autoplaySpeed}
 										onChange={(val) => setAttributes({autoplaySpeed: Number(val)})}
 										__next40pxDefaultSize
@@ -302,12 +262,23 @@ export default function Edit(props) {
 							}
 							<PanelRow>
 								<ToggleControl
-									label="Adaptive Height"
-									help={
-										adaptiveHeight
-											? 'Yes'
-											: 'No'
-									}
+									label={__('Infinite loop', 'gb-for-slick-slider')}
+									checked={infinite}
+									__nextHasNoMarginBottom
+									onChange={(val) => setAttributes({infinite: val})}
+								/>
+							</PanelRow>
+							<PanelRow>
+								<ToggleControl
+									label={__('Show Dots', 'gb-for-slick-slider')}
+									checked={dots}
+									__nextHasNoMarginBottom
+									onChange={(val) => setAttributes({dots: val})}
+								/>
+							</PanelRow>
+							<PanelRow>
+								<ToggleControl
+									label={__('Adaptive Height', 'gb-for-slick-slider')}
 									checked={adaptiveHeight}
 									__nextHasNoMarginBottom
 									onChange={(val) => setAttributes({adaptiveHeight: val})}
@@ -319,11 +290,11 @@ export default function Edit(props) {
 						<PanelBody title={__('Arrow Settings', 'gb-for-slick-slider')} initialOpen={false}>
 							<PanelRow>
 								<ToggleControl
-									label="Show Arrows"
+									label={__('Show Arrows', 'gb-for-slick-slider')}
 									help={
 										arrows
-											? 'Show arrows'
-											: 'Hide arrows'
+											? __('Show arrows', 'gb-for-slick-slider')
+											: __('Hide arrows', 'gb-for-slick-slider')
 									}
 									checked={arrows}
 									__nextHasNoMarginBottom
@@ -333,13 +304,16 @@ export default function Edit(props) {
 							{arrows &&
 								<PanelRow>
 									<SelectControl
-										label="Arrow Style"
+										label={__('Arrow Style', 'gb-for-slick-slider')}
 										value={arrowStyle}
 										__next40pxDefaultSize
 										__nextHasNoMarginBottom
 										options={[
-											{label: 'Chevron (< >)', value: 'chevron'},
-											{label: 'Simple Arrow (← →)', value: 'simple-arrow'}
+											{label: __('Chevron (< >)', 'gb-for-slick-slider'), value: 'chevron'},
+											{
+												label: __('Simple Arrow (← →)', 'gb-for-slick-slider'),
+												value: 'simple-arrow'
+											}
 										]}
 										onChange={(val) => setAttributes({arrowStyle: val})}
 									/>
@@ -348,13 +322,13 @@ export default function Edit(props) {
 							{arrows && !dots &&
 								<PanelRow>
 									<SelectControl
-										label="Arrow Position"
+										label={__('Arrow Position', 'gb-for-slick-slider')}
 										value={arrowPosition}
 										__next40pxDefaultSize
 										__nextHasNoMarginBottom
 										options={[
-											{label: 'Sides (Default)', value: 'sides'},
-											{label: 'Bottom Center', value: 'bottom'}
+											{label: __('Sides (Default)', 'gb-for-slick-slider'), value: 'sides'},
+											{label: __('Bottom Center', 'gb-for-slick-slider'), value: 'bottom'}
 										]}
 										onChange={(val) => setAttributes({arrowPosition: val})}
 									/>
@@ -364,7 +338,7 @@ export default function Edit(props) {
 								<>
 									<PanelRow>
 										<NumberControl
-											label="Arrow font size (px)"
+											label={__('Arrow font size (px)', 'gb-for-slick-slider')}
 											value={arrowFontSize}
 											min={10}
 											max={100}
@@ -374,7 +348,7 @@ export default function Edit(props) {
 									</PanelRow>
 									<PanelRow>
 										<NumberControl
-											label="Arrow Height (px)"
+											label={__('Arrow Height (px)', 'gb-for-slick-slider')}
 											value={arrowHeight}
 											min={40}
 											max={100}
@@ -384,29 +358,29 @@ export default function Edit(props) {
 									</PanelRow>
 									<PanelRow>
 										<SelectControl
-											label="Arrow Border Style"
+											label={__('Arrow Border Style', 'gb-for-slick-slider')}
 											value={arrowBorderStyle}
 											__next40pxDefaultSize
 											__nextHasNoMarginBottom
 											options={[
-												{label: 'Circle', value: 'circle'},
-												{label: 'Rounded', value: 'rounded'},
-												{label: 'Square', value: 'square'},
-												{label: 'None', value: 'none'}
+												{label: __('Circle', 'gb-for-slick-slider'), value: 'circle'},
+												{label: __('Rounded', 'gb-for-slick-slider'), value: 'rounded'},
+												{label: __('Square', 'gb-for-slick-slider'), value: 'square'},
+												{label: __('None', 'gb-for-slick-slider'), value: 'none'}
 											]}
 											onChange={(val) => setAttributes({arrowBorderStyle: val})}
 										/>
 									</PanelRow>
 									<PanelRow>
 										<SelectControl
-											label="Arrow Border Style"
+											label={__('Arrow Border Style', 'gb-for-slick-slider')}
 											value={arrowBorderStyle}
 											__next40pxDefaultSize
 											__nextHasNoMarginBottom
 											options={[
-												{label: 'Rounded', value: 'rounded'},
-												{label: 'Square', value: 'square'},
-												{label: 'None', value: 'none'}
+												{label: __('Rounded', 'gb-for-slick-slider'), value: 'rounded'},
+												{label: __('Square', 'gb-for-slick-slider'), value: 'square'},
+												{label: __('None', 'gb-for-slick-slider'), value: 'none'}
 											]}
 											onChange={(val) => setAttributes({arrowBorderStyle: val})}
 										/>
@@ -444,11 +418,12 @@ export default function Edit(props) {
 								return (
 									<div key={index}>
 										<Divider/>
-										<Heading level={2}>Breakpoint: {breakpoint.breakpoint}px</Heading>
+										<Heading
+											level={2}>{__('Breakpoint', 'gb-for-slick-slider')}: {breakpoint.breakpoint}px</Heading>
 										<Divider/>
 										<PanelRow>
 											<NumberControl
-												label="Slides to show "
+												label={__('Slides to show', 'gb-for-slick-slider')}
 												value={breakpoint.settings.slidesToShow}
 												onChange={(val) => updateResponsiveSettings(breakpoint.breakpoint, 'slidesToShow', Number(val))}
 												__next40pxDefaultSize
@@ -456,7 +431,7 @@ export default function Edit(props) {
 										</PanelRow>
 										<PanelRow>
 											<NumberControl
-												label="Slides to scroll "
+												label={__('Slides to scroll', 'gb-for-slick-slider')}
 												value={breakpoint.settings.slidesToScroll}
 												onChange={(val) => updateResponsiveSettings(breakpoint.breakpoint, 'slidesToScroll', Number(val))}
 												__next40pxDefaultSize
@@ -464,11 +439,11 @@ export default function Edit(props) {
 										</PanelRow>
 										<PanelRow>
 											<ToggleControl
-												label="Show Arrows"
+												label={__('Show Arrows', 'gb-for-slick-slider')}
 												help={
 													breakpoint.settings.arrows
-														? 'Show arrows'
-														: 'Hide arrows'
+														? __('Show arrows', 'gb-for-slick-slider')
+														: __('Hide arrows', 'gb-for-slick-slider')
 												}
 												checked={breakpoint.settings.arrows}
 												__nextHasNoMarginBottom
@@ -477,11 +452,11 @@ export default function Edit(props) {
 										</PanelRow>
 										<PanelRow>
 											<ToggleControl
-												label="Show Dots"
+												label={__('Show Dots', 'gb-for-slick-slider')}
 												help={
 													breakpoint.settings.dots
-														? 'Show dots'
-														: 'Hide dots'
+														? __('Show dots', 'gb-for-slick-slider')
+														: __('Hide dots', 'gb-for-slick-slider')
 												}
 												checked={breakpoint.settings.dots}
 												__nextHasNoMarginBottom

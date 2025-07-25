@@ -73,3 +73,24 @@ if (!function_exists('gb_slick_slider_block_init')) :
 	add_action('init', 'gb_slick_slider_block_init');
 
 endif;
+
+/*--------------------------------------------------------------
+# Localize script for editor
+--------------------------------------------------------------*/
+if (!function_exists('gb_slick_slider_block_localize_script')) :
+
+	function gb_slick_slider_block_localize_script(): void
+	{
+		wp_localize_script(
+			'gb-for-slick-slider-slick-slider-editor-script',
+			'gbSlickSliderData',
+			array(
+				'pluginUrl' => GB_SLICK_SLIDER_BLOCK_URL,
+				'assetsUrl' => GB_SLICK_SLIDER_BLOCK_URL . 'assets/'
+			)
+		);
+	}
+
+	add_action('enqueue_block_editor_assets', 'gb_slick_slider_block_localize_script');
+
+endif;
