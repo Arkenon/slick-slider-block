@@ -4,7 +4,7 @@ Tags:              slider, slider block, carousel, gutenberg, block slider
 Requires at least: 6.1
 Tested up to:      6.8
 Requires PHP:      7.4
-Stable tag:        1.1.5
+Stable tag:        1.2.0
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -32,14 +32,13 @@ Just add a new Slick Slider Block and start creating your own designs.
 
 == Changelog ==
 
-= 1.1.5 =
+= 1.2.0 =
 
 * Tested up to: WordPress 6.8
 * Added: Prebuild templates (patterns)
-* Added: Arrow styles
 * Converted: Slick Slider Block into dynamic block
 * Fixed: RTL support problem
-* Added: Arrow position option and arrow background color option
+* Added: Arrow options (color, size, position)
 
 = 1.1.4 =
 

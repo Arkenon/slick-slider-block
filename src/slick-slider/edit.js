@@ -133,7 +133,6 @@ export default function Edit(props) {
 	const handlePatternSelect = (pattern) => {
 		setPatternSelected(true);
 		setPatternModalOpen(false);
-		// Tüm pattern'ler için blocks varsa ekle
 		if (pattern.blocks && pattern.blocks.length > 0) {
 			insertPatternBlocks(pattern);
 		}
@@ -162,7 +161,7 @@ export default function Edit(props) {
 						title={__('Select a Pattern', 'gb-for-slick-slider')}
 						onRequestClose={() => setPatternModalOpen(false)}
 					>
-						<div style={{display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px'}}>
+						<div style={{display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '20px'}}>
 							{patterns.map((pattern) => (
 								<Card key={pattern.id} style={{cursor: 'pointer'}}
 									  onClick={() => handlePatternSelect(pattern)}>
