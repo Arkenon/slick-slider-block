@@ -40,7 +40,10 @@ export default function Edit(props) {
 			arrowStyle,
 			arrowBorderStyle,
 			arrowBackgroundColor,
-			arrowPosition
+			arrowColor,
+			arrowPosition,
+			arrowFontSize,
+			arrowHeight
 		}, setAttributes
 	} = props;
 
@@ -181,268 +184,316 @@ export default function Edit(props) {
 			}
 
 			<InspectorControls>
-				<Panel>
-					<PanelBody title={__('General Settings', 'gb-for-slick-slider')} initialOpen={true}>
-						<PanelRow>
-							<NumberControl
-								label="Gap between slides "
-								value={slideMargin}
-								onChange={(val) => setAttributes({slideMargin: Number(val)})}
-								__next40pxDefaultSize
-							/>
-						</PanelRow>
-						<PanelRow>
-							<NumberControl
-								label="Slides to show "
-								value={slidesToShow}
-								onChange={(val) => handleSlidesToShow(Number(val))}
-								__next40pxDefaultSize
-							/>
-						</PanelRow>
-						{slidesToShow <= 1 &&
-							<PanelRow>
-								<ToggleControl
-									label="Fade"
-									help={
-										fade
-											? 'Yes'
-											: 'No'
-									}
-									checked={fade}
-									onChange={(val) => setAttributes({fade: val})}
-									__nextHasNoMarginBottom
-								/>
-							</PanelRow>
-						}
-						{slidesToShow > 1 &&
-							<PanelRow>
-								<ToggleControl
-									label="Center Mode"
-									help={
-										centerMode
-											? 'Yes'
-											: 'No'
-									}
-									checked={centerMode}
-									__nextHasNoMarginBottom
-									onChange={(val) => setAttributes({centerMode: val})}
-								/>
-							</PanelRow>
-						}
-						<PanelRow>
-							<ToggleControl
-								label="Infinite loop"
-								help={
-									infinite
-										? 'Yes'
-										: 'No'
-								}
-								checked={infinite}
-								__nextHasNoMarginBottom
-								onChange={(val) => setAttributes({infinite: val})}
-							/>
-						</PanelRow>
-						<PanelRow>
-							<NumberControl
-								label="Slides to scroll "
-								value={slidesToScroll}
-								onChange={(val) => setAttributes({slidesToScroll: Number(val)})}
-								__next40pxDefaultSize
-							/>
-						</PanelRow>
-						<PanelRow>
-							<NumberControl
-								label="Slide speed"
-								value={slideSpeed}
-								onChange={(val) => setAttributes({slideSpeed: Number(val)})}
-								__next40pxDefaultSize
-							/>
-						</PanelRow>
-						<PanelRow>
-							<ToggleControl
-								label="Show Dots"
-								help={
-									dots
-										? 'Show dots'
-										: 'Hide dots'
-								}
-								checked={dots}
-								__nextHasNoMarginBottom
-								onChange={(val) => setAttributes({dots: val})}
-							/>
-						</PanelRow>
-						<PanelRow>
-							<ToggleControl
-								label="Autoplay"
-								help={
-									autoplay
-										? 'Yes'
-										: 'No'
-								}
-								checked={autoplay}
-								__nextHasNoMarginBottom
-								onChange={(val) => setAttributes({autoplay: val})}
-							/>
-						</PanelRow>
-						{autoplay &&
+				<div className="gb-for-slick-slider-inspector">
+					<Panel>
+						<PanelBody title={__('General Settings', 'gb-for-slick-slider')} initialOpen={true}>
 							<PanelRow>
 								<NumberControl
-									label="Autoplay speed "
-									value={autoplaySpeed}
-									onChange={(val) => setAttributes({autoplaySpeed: Number(val)})}
+									label={__('Gap between slides','gb-for-slick-slider')}
+									min={0}
+									value={slideMargin}
+									onChange={(val) => setAttributes({slideMargin: Number(val)})}
 									__next40pxDefaultSize
 								/>
 							</PanelRow>
-						}
-						<PanelRow>
-							<ToggleControl
-								label="Adaptive Height"
-								help={
-									adaptiveHeight
-										? 'Yes'
-										: 'No'
-								}
-								checked={adaptiveHeight}
-								__nextHasNoMarginBottom
-								onChange={(val) => setAttributes({adaptiveHeight: val})}
-							/>
-						</PanelRow>
-					</PanelBody>
-				</Panel>
-				<Panel>
-					<PanelBody title={__('Arrow Settings', 'gb-for-slick-slider')} initialOpen={false}>
-						<PanelRow>
-							<ToggleControl
-								label="Show Arrows"
-								help={
-									arrows
-										? 'Show arrows'
-										: 'Hide arrows'
-								}
-								checked={arrows}
-								__nextHasNoMarginBottom
-								onChange={(val) => setAttributes({arrows: val})}
-							/>
-						</PanelRow>
-						{arrows &&
 							<PanelRow>
-								<SelectControl
-									label="Arrow Style"
-									value={arrowStyle}
+								<NumberControl
+									label="Slides to show "
+									min={1}
+									value={slidesToShow}
+									onChange={(val) => handleSlidesToShow(Number(val))}
 									__next40pxDefaultSize
-									__nextHasNoMarginBottom
-									options={[
-										{label: 'Chevron (< >)', value: 'chevron'},
-										{label: 'Simple Arrow (← →)', value: 'simple-arrow'},
-										{label: 'Solid Triangle (⮜ ⮞)', value: 'solid-triangle'},
-										{label: 'Triangle (⯇ ⯈)', value: 'triangle'},
-									]}
-									onChange={(val) => setAttributes({arrowStyle: val})}
 								/>
 							</PanelRow>
-						}
-						{arrows &&
-							<PanelRow>
-								<SelectControl
-									label="Arrow Border Style"
-									value={arrowBorderStyle}
-									__next40pxDefaultSize
-									__nextHasNoMarginBottom
-									options={[
-										{label: 'Rounded', value: 'rounded'},
-										{label: 'Square', value: 'square'},
-										{label: 'None', value: 'none'}
-									]}
-									onChange={(val) => setAttributes({arrowBorderStyle: val})}
-								/>
-							</PanelRow>
-						}
-						{arrows &&
-							<PanelRow>
-								<div style={{marginBottom: '16px'}}>
-									<label style={{display: 'block', marginBottom: '8px', fontWeight: 500}}>
-										{__('Arrow Background Color', 'gb-for-slick-slider')}
-									</label>
-									<ColorPicker
-										color={arrowBackgroundColor}
-										onChangeComplete={(color) => setAttributes({arrowBackgroundColor: color.hex})}
+							{slidesToShow <= 1 &&
+								<PanelRow>
+									<ToggleControl
+										label="Fade"
+										help={
+											fade
+												? 'Yes'
+												: 'No'
+										}
+										checked={fade}
+										onChange={(val) => setAttributes({fade: val})}
+										__nextHasNoMarginBottom
 									/>
-								</div>
-							</PanelRow>
-						}
-						{arrows && !dots &&
+								</PanelRow>
+							}
+							{slidesToShow > 1 &&
+								<PanelRow>
+									<ToggleControl
+										label="Center Mode"
+										help={
+											centerMode
+												? 'Yes'
+												: 'No'
+										}
+										checked={centerMode}
+										__nextHasNoMarginBottom
+										onChange={(val) => setAttributes({centerMode: val})}
+									/>
+								</PanelRow>
+							}
 							<PanelRow>
-								<SelectControl
-									label="Arrow Position"
-									value={arrowPosition}
-									__next40pxDefaultSize
+								<ToggleControl
+									label="Infinite loop"
+									help={
+										infinite
+											? 'Yes'
+											: 'No'
+									}
+									checked={infinite}
 									__nextHasNoMarginBottom
-									options={[
-										{label: 'Sides (Default)', value: 'sides'},
-										{label: 'Bottom Center', value: 'bottom'}
-									]}
-									onChange={(val) => setAttributes({arrowPosition: val})}
+									onChange={(val) => setAttributes({infinite: val})}
 								/>
 							</PanelRow>
-						}
-					</PanelBody>
-				</Panel>
+							<PanelRow>
+								<NumberControl
+									label="Slides to scroll "
+									value={slidesToScroll}
+									onChange={(val) => setAttributes({slidesToScroll: Number(val)})}
+									__next40pxDefaultSize
+								/>
+							</PanelRow>
+							<PanelRow>
+								<NumberControl
+									label="Slide speed"
+									value={slideSpeed}
+									onChange={(val) => setAttributes({slideSpeed: Number(val)})}
+									__next40pxDefaultSize
+								/>
+							</PanelRow>
+							<PanelRow>
+								<ToggleControl
+									label="Show Dots"
+									help={
+										dots
+											? 'Show dots'
+											: 'Hide dots'
+									}
+									checked={dots}
+									__nextHasNoMarginBottom
+									onChange={(val) => setAttributes({dots: val})}
+								/>
+							</PanelRow>
+							<PanelRow>
+								<ToggleControl
+									label="Autoplay"
+									help={
+										autoplay
+											? 'Yes'
+											: 'No'
+									}
+									checked={autoplay}
+									__nextHasNoMarginBottom
+									onChange={(val) => setAttributes({autoplay: val})}
+								/>
+							</PanelRow>
+							{autoplay &&
+								<PanelRow>
+									<NumberControl
+										label="Autoplay speed "
+										value={autoplaySpeed}
+										onChange={(val) => setAttributes({autoplaySpeed: Number(val)})}
+										__next40pxDefaultSize
+									/>
+								</PanelRow>
+							}
+							<PanelRow>
+								<ToggleControl
+									label="Adaptive Height"
+									help={
+										adaptiveHeight
+											? 'Yes'
+											: 'No'
+									}
+									checked={adaptiveHeight}
+									__nextHasNoMarginBottom
+									onChange={(val) => setAttributes({adaptiveHeight: val})}
+								/>
+							</PanelRow>
+						</PanelBody>
+					</Panel>
+					<Panel>
+						<PanelBody title={__('Arrow Settings', 'gb-for-slick-slider')} initialOpen={false}>
+							<PanelRow>
+								<ToggleControl
+									label="Show Arrows"
+									help={
+										arrows
+											? 'Show arrows'
+											: 'Hide arrows'
+									}
+									checked={arrows}
+									__nextHasNoMarginBottom
+									onChange={(val) => setAttributes({arrows: val})}
+								/>
+							</PanelRow>
+							{arrows &&
+								<PanelRow>
+									<SelectControl
+										label="Arrow Style"
+										value={arrowStyle}
+										__next40pxDefaultSize
+										__nextHasNoMarginBottom
+										options={[
+											{label: 'Chevron (< >)', value: 'chevron'},
+											{label: 'Simple Arrow (← →)', value: 'simple-arrow'}
+										]}
+										onChange={(val) => setAttributes({arrowStyle: val})}
+									/>
+								</PanelRow>
+							}
+							{arrows && !dots &&
+								<PanelRow>
+									<SelectControl
+										label="Arrow Position"
+										value={arrowPosition}
+										__next40pxDefaultSize
+										__nextHasNoMarginBottom
+										options={[
+											{label: 'Sides (Default)', value: 'sides'},
+											{label: 'Bottom Center', value: 'bottom'}
+										]}
+										onChange={(val) => setAttributes({arrowPosition: val})}
+									/>
+								</PanelRow>
+							}
+							{arrows &&
+								<>
+									<PanelRow>
+										<NumberControl
+											label="Arrow font size (px)"
+											value={arrowFontSize}
+											min={10}
+											max={100}
+											onChange={(val) => setAttributes({arrowFontSize: Number(val)})}
+											__next40pxDefaultSize
+										/>
+									</PanelRow>
+									<PanelRow>
+										<NumberControl
+											label="Arrow Height (px)"
+											value={arrowHeight}
+											min={40}
+											max={100}
+											onChange={(val) => setAttributes({arrowHeight: Number(val)})}
+											__next40pxDefaultSize
+										/>
+									</PanelRow>
+									<PanelRow>
+										<SelectControl
+											label="Arrow Border Style"
+											value={arrowBorderStyle}
+											__next40pxDefaultSize
+											__nextHasNoMarginBottom
+											options={[
+												{label: 'Rounded', value: 'rounded'},
+												{label: 'Square', value: 'square'},
+												{label: 'None', value: 'none'}
+											]}
+											onChange={(val) => setAttributes({arrowBorderStyle: val})}
+										/>
+									</PanelRow>
+									<PanelRow>
+										<SelectControl
+											label="Arrow Border Style"
+											value={arrowBorderStyle}
+											__next40pxDefaultSize
+											__nextHasNoMarginBottom
+											options={[
+												{label: 'Circle', value: 'circle'},
+												{label: 'Rounded', value: 'rounded'},
+												{label: 'Square', value: 'square'},
+												{label: 'None', value: 'none'}
+											]}
+											onChange={(val) => setAttributes({arrowBorderStyle: val})}
+										/>
+									</PanelRow>
+									<PanelRow>
+										<div style={{marginBottom: '16px'}}>
+											<label style={{display: 'block', marginBottom: '8px', fontWeight: 500}}>
+												{__('Arrow Background Color', 'gb-for-slick-slider')}
+											</label>
+											<ColorPicker
+												color={arrowBackgroundColor}
+												onChangeComplete={(color) => setAttributes({arrowBackgroundColor: color.hex})}
+											/>
+										</div>
+									</PanelRow>
+									<PanelRow>
+										<div style={{marginBottom: '16px'}}>
+											<label style={{display: 'block', marginBottom: '8px', fontWeight: 500}}>
+												{__('Arrow Color', 'gb-for-slick-slider')}
+											</label>
+											<ColorPicker
+												color={arrowColor}
+												onChangeComplete={(color) => setAttributes({arrowColor: color.hex})}
+											/>
+										</div>
+									</PanelRow>
+								</>
+							}
+						</PanelBody>
+					</Panel>
 
-				<Panel>
-					<PanelBody title={__('Responsive Settings', 'gb-for-slick-slider')} initialOpen={false}>
-						{localResponsive.map(function (breakpoint, index) {
-							return (
-								<div key={index}>
-									<Divider/>
-									<Heading level={2}>Breakpoint: {breakpoint.breakpoint}px</Heading>
-									<Divider/>
-									<PanelRow>
-										<NumberControl
-											label="Slides to show "
-											value={breakpoint.settings.slidesToShow}
-											onChange={(val) => updateResponsiveSettings(breakpoint.breakpoint, 'slidesToShow', Number(val))}
-											__next40pxDefaultSize
-										/>
-									</PanelRow>
-									<PanelRow>
-										<NumberControl
-											label="Slides to scroll "
-											value={breakpoint.settings.slidesToScroll}
-											onChange={(val) => updateResponsiveSettings(breakpoint.breakpoint, 'slidesToScroll', Number(val))}
-											__next40pxDefaultSize
-										/>
-									</PanelRow>
-									<PanelRow>
-										<ToggleControl
-											label="Show Arrows"
-											help={
-												breakpoint.settings.arrows
-													? 'Show arrows'
-													: 'Hide arrows'
-											}
-											checked={breakpoint.settings.arrows}
-											__nextHasNoMarginBottom
-											onChange={(val) => updateResponsiveSettings(breakpoint.breakpoint, 'arrows', val)}
-										/>
-									</PanelRow>
-									<PanelRow>
-										<ToggleControl
-											label="Show Dots"
-											help={
-												breakpoint.settings.dots
-													? 'Show dots'
-													: 'Hide dots'
-											}
-											checked={breakpoint.settings.dots}
-											__nextHasNoMarginBottom
-											onChange={(val) => updateResponsiveSettings(breakpoint.breakpoint, 'dots', val)}
-										/>
-									</PanelRow>
-								</div>
-							)
-						})}
-					</PanelBody>
-				</Panel>
+					<Panel>
+						<PanelBody title={__('Responsive Settings', 'gb-for-slick-slider')} initialOpen={false}>
+							{localResponsive.map(function (breakpoint, index) {
+								return (
+									<div key={index}>
+										<Divider/>
+										<Heading level={2}>Breakpoint: {breakpoint.breakpoint}px</Heading>
+										<Divider/>
+										<PanelRow>
+											<NumberControl
+												label="Slides to show "
+												value={breakpoint.settings.slidesToShow}
+												onChange={(val) => updateResponsiveSettings(breakpoint.breakpoint, 'slidesToShow', Number(val))}
+												__next40pxDefaultSize
+											/>
+										</PanelRow>
+										<PanelRow>
+											<NumberControl
+												label="Slides to scroll "
+												value={breakpoint.settings.slidesToScroll}
+												onChange={(val) => updateResponsiveSettings(breakpoint.breakpoint, 'slidesToScroll', Number(val))}
+												__next40pxDefaultSize
+											/>
+										</PanelRow>
+										<PanelRow>
+											<ToggleControl
+												label="Show Arrows"
+												help={
+													breakpoint.settings.arrows
+														? 'Show arrows'
+														: 'Hide arrows'
+												}
+												checked={breakpoint.settings.arrows}
+												__nextHasNoMarginBottom
+												onChange={(val) => updateResponsiveSettings(breakpoint.breakpoint, 'arrows', val)}
+											/>
+										</PanelRow>
+										<PanelRow>
+											<ToggleControl
+												label="Show Dots"
+												help={
+													breakpoint.settings.dots
+														? 'Show dots'
+														: 'Hide dots'
+												}
+												checked={breakpoint.settings.dots}
+												__nextHasNoMarginBottom
+												onChange={(val) => updateResponsiveSettings(breakpoint.breakpoint, 'dots', val)}
+											/>
+										</PanelRow>
+									</div>
+								)
+							})}
+						</PanelBody>
+					</Panel>
+				</div>
 			</InspectorControls>
 		</>
 	);

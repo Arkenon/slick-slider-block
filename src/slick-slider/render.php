@@ -22,9 +22,12 @@ $slide_speed = $attributes['slideSpeed'] ?? 1000;
 $slides_to_scroll = $attributes['slidesToScroll'] ?? 1;
 $slide_margin = $attributes['slideMargin'] ?? 0;
 $arrow_style = $attributes['arrowStyle'] ?? 'chevron';
-$arrow_border_style = $attributes['arrowBorderStyle'] ?? 'rounded';
-$arrow_background_color = $attributes['arrowBackgroundColor'] ?? '#333333';
+$arrow_border_style = $attributes['arrowBorderStyle'] ?? 'circle';
+$arrow_background_color = $attributes['arrowBackgroundColor'] ?? '#ffffff00';
+$arrow_color = $attributes['arrowColor'] ?? '#d3d1d1';
 $arrow_position = $attributes['arrowPosition'] ?? 'sides';
+$arrow_font_size = $attributes['arrowFontSize'] ?? 20;
+$arrow_height = $attributes['arrowHeight'] ?? 40;
 $responsive = $attributes['responsive'] ?? [];
 
 // Build Slick options JSON
@@ -50,13 +53,13 @@ $arrow_position_class = $arrow_position ? 'arrow-position-' . $arrow_position : 
 $custom_arrow_class = trim($arrow_style_class . ' ' . $arrow_border_class . ' ' . $arrow_position_class);
 
 // Create CSS custom properties for dynamic styling
-$inline_styles = '';
-if ($arrow_background_color) {
-	$inline_styles = sprintf(
-		'style="--arrow-bg-color: %s;"',
-		esc_attr($arrow_background_color, '#333333')
-	);
-}
+$inline_styles = sprintf(
+	'style="--arrow-bg-color: %s;--arrow-color: %s; --arrow-font-size: %dpx; --arrow-height: %dpx;"',
+	esc_attr($arrow_background_color),
+	esc_attr($arrow_color),
+	esc_attr(intval($arrow_font_size)),
+	esc_attr(intval($arrow_height))
+);
 
 // Get wrapper attributes
 $wrapper_attributes = get_block_wrapper_attributes([

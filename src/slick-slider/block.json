@@ -74,15 +74,27 @@
 		},
 		"arrowBorderStyle": {
 			"type": "string",
-			"default": "rounded"
+			"default": "circle"
 		},
 		"arrowBackgroundColor": {
 			"type": "string",
-			"default": "#333333"
+			"default": "#ffffff00"
+		},
+		"arrowColor": {
+			"type": "string",
+			"default": "#d3d1d1"
 		},
 		"arrowPosition": {
 			"type": "string",
 			"default": "sides"
+		},
+		"arrowFontSize": {
+			"type": "number",
+			"default": 20
+		},
+		"arrowHeight": {
+			"type": "number",
+			"default": 40
 		},
 		"responsive": {
 			"type": "array",

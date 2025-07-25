@@ -36,4 +36,15 @@
 }
 
 
+.gb-for-slick-slider-inspector {
+	.components-panel__body {
+		.components-panel__row {
+			flex-direction: column;
+			.components-base-control {
+				width: 100%;
+			}
+		}
+	}
+}
+
 

@@ -4,6 +4,47 @@
 
 .wp-block-gb-for-slick-slider-slick-slider {
 
+	/*
+ * Contains custom styles for the Slick Slider.
+ * This file is used to override default styles and add custom styles for the slider.
+ */
+
+	.slick-prev:before, .slick-next:before {
+		font-family: 'system-ui' !important;
+		font-size: var(--arrow-font-size) !important;
+	}
+
+	.slick-prev {
+		left: -45px !important;
+	}
+
+	.slick-next {
+		right: -45px !important;
+	}
+
+	/* RTL Support - Fixed with proper CSS reset */
+	[dir='rtl'] .slick-prev {
+		left: auto !important;
+		right: -45px !important;
+	}
+
+	[dir='rtl'] .slick-next {
+		right: auto !important;
+		left: -45px !important;
+	}
+
+	/* Alternative RTL selector for broader compatibility */
+	.rtl .slick-prev {
+		left: auto !important;
+		right: -45px !important;
+	}
+
+	.rtl .slick-next {
+		right: auto !important;
+		left: -45px !important;
+	}
+
+
 	// Full-width slider arrow positioning
 	&.alignfull {
 		.slick-prev {
@@ -54,65 +95,21 @@
 		}
 	}
 
-	&.arrow-style-solid-triangle {
-		.slick-prev:before {
-			content: "⮜" !important;
-		}
-
-		.slick-next:before {
-			content: "⮞" !important;
-		}
-
-		// RTL triangle arrows
-		[dir="rtl"] &,
-		&:dir(rtl) {
-			.slick-prev:before {
-				content: "⮞" !important;
-			}
-
-			.slick-next:before {
-				content: "⮜" !important;
-			}
-		}
-	}
-
-	&.arrow-style-triangle {
-		.slick-prev:before {
-			content: "⯇" !important;
-		}
-
-		.slick-next:before {
-			content: "⯈" !important;
-		}
-
-		// RTL outline triangles
-		[dir="rtl"] &,
-		&:dir(rtl) {
-			.slick-prev:before {
-				content: "⯈" !important;
-			}
-
-			.slick-next:before {
-				content: "⯇" !important;
-			}
-		}
-	}
-
 	// Arrow border styles - shared properties
 	&.arrow-border-style-square,
 	&.arrow-border-style-rounded,
 	&.arrow-border-style-none {
 		.slick-prev,
 		.slick-next {
-			background-color: var(--arrow-bg-color);
-			color: white;
-			height: 40px;
-			width: 40px;
+			background-color: var(--arrow-bg-color) !important;
+			height: var(--arrow-height) !important;
+			width: var(--arrow-height) !important;
 			opacity: 0.8;
+			border: 1px solid #d3d1d1;
 
 			&:before {
-				line-height: 0.6;
-				color: white;
+				line-height: 0.5;
+				color: var(--arrow-color) !important;
 			}
 
 			&:hover {
@@ -124,14 +121,18 @@
 	// Border-specific styles
 	&.arrow-border-style-square {
 		.slick-prev, .slick-next {
-			border: 1px solid #d3d1d1;
 			border-radius: 0;
 		}
 	}
 
 	&.arrow-border-style-rounded {
 		.slick-prev, .slick-next {
-			border: 1px solid #d3d1d1;
+			border-radius: 20%;
+		}
+	}
+
+	&.arrow-border-style-circle {
+		.slick-prev, .slick-next {
 			border-radius: 50%;
 		}
 	}
@@ -144,26 +145,21 @@
 
 	// Arrow position styles
 	&.arrow-position-bottom {
-		// Add bottom padding to slider container to make room for arrows
-		.slick-slider {
-			padding-bottom: 80px;
-		}
-
 		.slick-prev,
 		.slick-next {
-			position: absolute;
-			bottom: -70px;
 			top: auto;
 			z-index: 999;
+			bottom: 0;
+			transform: translateY(120%);
+			position: absolute;
 		}
 
-		// Create a centered container for arrows
 		.slick-prev {
-			left: calc(50% - 50px)!important; // Center minus half of total width (40px button + 10px gap)
+			left: calc(50% - (var(--arrow-height) / 2) - 5px) !important;
 		}
 
 		.slick-next {
-			left: calc(50% + 10px)!important; // Center plus gap
+			left: calc(50% + (var(--arrow-height) / 2) + 5px) !important;
 		}
 
 		// RTL support for bottom positioned arrows
@@ -175,14 +171,6 @@
 
 			.slick-next {
 				left: calc(50% - 50px);
-			}
-		}
-
-		// Full-width adjustments for bottom arrows
-		&.alignfull {
-			.slick-prev,
-			.slick-next {
-				bottom: -60px;
 			}
 		}
 	}
