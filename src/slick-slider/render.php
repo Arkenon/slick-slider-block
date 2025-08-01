@@ -77,6 +77,6 @@ if (!empty($block->inner_blocks)) {
 
 // Render the block
 ?>
-<section <?php echo esc_attr($wrapper_attributes); ?> <?php echo esc_html($inline_styles); ?>>
+<section <?php echo $wrapper_attributes; ?> <?php echo $inline_styles; ?>>
 	<?php echo wp_kses_post($inner_blocks_content); ?>
 </section>

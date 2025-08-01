@@ -1,10 +1,10 @@
 === Simple Slider Block - Create Sliders From Core Blocks  ===
-Contributors:      arkenon, xideathemes
+Contributors:      arkenon
 Tags:              slider, slider block, carousel, gutenberg, block slider
 Requires at least: 6.1
 Tested up to:      6.8
 Requires PHP:      7.4
-Stable tag:        1.2.0
+Stable tag:        1.2.2
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -31,6 +31,14 @@ Just add a new Slick Slider Block and start creating your own designs.
 3. Search for the block within the Block Editor (Gutenberg) and begin using.
 
 == Changelog ==
+
+= 1.2.2 =
+
+* Fixed: The spelling mistake in the plugin nam
+
+= 1.2.1 =
+
+* Fixed: Block wrapper attributes
 
 = 1.2.0 =
 
