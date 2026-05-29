@@ -1,0 +1,36 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "gb-for-slick-slider/slick-slider-item",
+  "version": "1.0.0",
+  "title": "Slick Slider Item",
+  "category": "widgets",
+  "icon": "welcome-add-page",
+  "description": "Slick Slider Block item. This is an inner block. Add core blocks in it.",
+  "supports": {
+    "html": false,
+    "layout": true,
+    "spacing": {
+      "padding": true,
+      "margin": true,
+      "blockGap": true
+    }
+  },
+  "usesContext": [
+    "gb-for-slick-slider/slidesToShow",
+    "gb-for-slick-slider/slideMargin"
+  ],
+  "attributes": {
+    "slideMargin": {
+      "type": "number",
+      "default": 0
+    }
+  },
+  "parent": [
+    "gb-for-slick-slider/slick-slider"
+  ],
+  "textdomain": "gb-for-slick-slider",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}
