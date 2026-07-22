@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<ruleset name="Gutenberg Block for Slick Slider">
+	<description>PHPCS ruleset for the Simple Slider Block plugin.</description>
+
+	<file>.</file>
+
+	<!-- Only scan hand-written source; build/ is compiled output. -->
+	<exclude-pattern>/build/*</exclude-pattern>
+	<exclude-pattern>/node_modules/*</exclude-pattern>
+	<exclude-pattern>/vendor/*</exclude-pattern>
+
+	<arg value="sp"/>
+	<arg name="basepath" value="."/>
+	<arg name="colors"/>
+	<arg name="extensions" value="php"/>
+
+	<rule ref="WordPress"/>
+
+	<config name="minimum_supported_wp_version" value="6.1"/>
+	<config name="testVersion" value="7.4-"/>
+</ruleset>

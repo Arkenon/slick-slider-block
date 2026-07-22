@@ -3,7 +3,7 @@ import {__} from '@wordpress/i18n';
 const patterns = [
 	{
 		id: 1,
-		name: __('Single Item', 'gb-for-slick-slider'),
+		name: __('Single Item', 'gutenberg-block-for-slick-slider'),
 		preview:  window.gbSlickSliderData ? window.gbSlickSliderData.assetsUrl + 'img/gb-for-slick-slider-single-item.jpg' : '',
 		blocks: [
 			{
@@ -86,7 +86,7 @@ const patterns = [
 	},
 	{
 		id: 2,
-		name: __('Multiple Item', 'gb-for-slick-slider'),
+		name: __('Multiple Item', 'gutenberg-block-for-slick-slider'),
 		preview:  window.gbSlickSliderData ? window.gbSlickSliderData.assetsUrl + 'img/gb-for-slick-slider-multiple-item.jpg' : '',
 		blocks: [
 			{
@@ -224,7 +224,7 @@ const patterns = [
 	},
 	{
 		id: 3,
-		name: __('Center Mode', 'gb-for-slick-slider'),
+		name: __('Center Mode', 'gutenberg-block-for-slick-slider'),
 		preview:  window.gbSlickSliderData ? window.gbSlickSliderData.assetsUrl + 'img/gb-for-slick-slider-center-mode.jpg' : '',
 		blocks: [
 			{
@@ -362,7 +362,7 @@ const patterns = [
 	},
 	{
 		id: 4,
-		name: __('Fade', 'gb-for-slick-slider'),
+		name: __('Fade', 'gutenberg-block-for-slick-slider'),
 		preview:  window.gbSlickSliderData ? window.gbSlickSliderData.assetsUrl + 'img/gb-for-slick-slider-fade.jpg' : '',
 		blocks: [
 			{

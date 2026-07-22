@@ -1,6 +1,6 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 2,
+  "apiVersion": 3,
   "name": "gb-for-slick-slider/slick-slider-item",
   "version": "1.0.0",
   "title": "Slick Slider Item",
@@ -29,7 +29,7 @@
   "parent": [
     "gb-for-slick-slider/slick-slider"
   ],
-  "textdomain": "gb-for-slick-slider",
+  "textdomain": "gutenberg-block-for-slick-slider",
   "editorScript": "file:./index.js",
   "editorStyle": "file:./index.css",
   "style": "file:./style-index.css"

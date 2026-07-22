@@ -145,10 +145,10 @@ export default function Edit(props) {
 				!hasInnerBlocks && !isPatternSelected && (
 					<div style={{textAlign: 'center', padding: '40px 0', border: '1px dashed #ccc'}}>
 						<Button variant="primary" onClick={() => setPatternModalOpen(true)} style={{marginRight: '10px'}}>
-							{__('Select Pattern', 'gb-for-slick-slider')}
+							{__('Select Pattern', 'gutenberg-block-for-slick-slider')}
 						</Button>
 						<Button variant="secondary" onClick={() => setPatternSelected(true)}>
-							{__('Use Blank Template', 'gb-for-slick-slider')}
+							{__('Use Blank Template', 'gutenberg-block-for-slick-slider')}
 						</Button>
 					</div>
 				)
@@ -158,7 +158,7 @@ export default function Edit(props) {
 				// If the user has selected to use prebuilt patterns, show the modal
 				isPatternModalOpen && (
 					<Modal
-						title={__('Select a Pattern', 'gb-for-slick-slider')}
+						title={__('Select a Pattern', 'gutenberg-block-for-slick-slider')}
 						onRequestClose={() => setPatternModalOpen(false)}
 					>
 						<div style={{display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '20px'}}>
@@ -186,10 +186,10 @@ export default function Edit(props) {
 			<InspectorControls>
 				<div className="gb-for-slick-slider-inspector">
 					<Panel>
-						<PanelBody title={__('General Settings', 'gb-for-slick-slider')} initialOpen={true}>
+						<PanelBody title={__('General Settings', 'gutenberg-block-for-slick-slider')} initialOpen={true}>
 							<PanelRow>
 								<NumberControl
-									label={__('Gap between slides (px)', 'gb-for-slick-slider')}
+									label={__('Gap between slides (px)', 'gutenberg-block-for-slick-slider')}
 									min={0}
 									value={slideMargin}
 									onChange={(val) => setAttributes({slideMargin: Number(val)})}
@@ -198,7 +198,7 @@ export default function Edit(props) {
 							</PanelRow>
 							<PanelRow>
 								<NumberControl
-									label={__('Slides to show', 'gb-for-slick-slider')}
+									label={__('Slides to show', 'gutenberg-block-for-slick-slider')}
 									min={1}
 									value={slidesToShow}
 									onChange={(val) => handleSlidesToShow(Number(val))}
@@ -208,7 +208,7 @@ export default function Edit(props) {
 							{slidesToShow <= 1 &&
 								<PanelRow>
 									<ToggleControl
-										label={__('Fade', 'gb-for-slick-slider')}
+										label={__('Fade', 'gutenberg-block-for-slick-slider')}
 										checked={fade}
 										onChange={(val) => setAttributes({fade: val})}
 										__nextHasNoMarginBottom
@@ -218,7 +218,7 @@ export default function Edit(props) {
 							{slidesToShow > 1 &&
 								<PanelRow>
 									<ToggleControl
-										label={__('Center Mode', 'gb-for-slick-slider')}
+										label={__('Center Mode', 'gutenberg-block-for-slick-slider')}
 										checked={centerMode}
 										__nextHasNoMarginBottom
 										onChange={(val) => setAttributes({centerMode: val})}
@@ -227,7 +227,7 @@ export default function Edit(props) {
 							}
 							<PanelRow>
 								<NumberControl
-									label={__('Slides to scroll', 'gb-for-slick-slider')}
+									label={__('Slides to scroll', 'gutenberg-block-for-slick-slider')}
 									value={slidesToScroll}
 									onChange={(val) => setAttributes({slidesToScroll: Number(val)})}
 									__next40pxDefaultSize
@@ -235,7 +235,7 @@ export default function Edit(props) {
 							</PanelRow>
 							<PanelRow>
 								<NumberControl
-									label={__('Slide speed', 'gb-for-slick-slider')}
+									label={__('Slide speed', 'gutenberg-block-for-slick-slider')}
 									value={slideSpeed}
 									onChange={(val) => setAttributes({slideSpeed: Number(val)})}
 									__next40pxDefaultSize
@@ -243,7 +243,7 @@ export default function Edit(props) {
 							</PanelRow>
 							<PanelRow>
 								<ToggleControl
-									label={__('Autoplay', 'gb-for-slick-slider')}
+									label={__('Autoplay', 'gutenberg-block-for-slick-slider')}
 									checked={autoplay}
 									__nextHasNoMarginBottom
 									onChange={(val) => setAttributes({autoplay: val})}
@@ -252,7 +252,7 @@ export default function Edit(props) {
 							{autoplay &&
 								<PanelRow>
 									<NumberControl
-										label={__('Autoplay speed', 'gb-for-slick-slider')}
+										label={__('Autoplay speed', 'gutenberg-block-for-slick-slider')}
 										value={autoplaySpeed}
 										onChange={(val) => setAttributes({autoplaySpeed: Number(val)})}
 										__next40pxDefaultSize
@@ -261,7 +261,7 @@ export default function Edit(props) {
 							}
 							<PanelRow>
 								<ToggleControl
-									label={__('Infinite loop', 'gb-for-slick-slider')}
+									label={__('Infinite loop', 'gutenberg-block-for-slick-slider')}
 									checked={infinite}
 									__nextHasNoMarginBottom
 									onChange={(val) => setAttributes({infinite: val})}
@@ -269,7 +269,7 @@ export default function Edit(props) {
 							</PanelRow>
 							<PanelRow>
 								<ToggleControl
-									label={__('Show Dots', 'gb-for-slick-slider')}
+									label={__('Show Dots', 'gutenberg-block-for-slick-slider')}
 									checked={dots}
 									__nextHasNoMarginBottom
 									onChange={(val) => setAttributes({dots: val})}
@@ -277,7 +277,7 @@ export default function Edit(props) {
 							</PanelRow>
 							<PanelRow>
 								<ToggleControl
-									label={__('Adaptive Height', 'gb-for-slick-slider')}
+									label={__('Adaptive Height', 'gutenberg-block-for-slick-slider')}
 									checked={adaptiveHeight}
 									__nextHasNoMarginBottom
 									onChange={(val) => setAttributes({adaptiveHeight: val})}
@@ -286,14 +286,14 @@ export default function Edit(props) {
 						</PanelBody>
 					</Panel>
 					<Panel>
-						<PanelBody title={__('Arrow Settings', 'gb-for-slick-slider')} initialOpen={false}>
+						<PanelBody title={__('Arrow Settings', 'gutenberg-block-for-slick-slider')} initialOpen={false}>
 							<PanelRow>
 								<ToggleControl
-									label={__('Show Arrows', 'gb-for-slick-slider')}
+									label={__('Show Arrows', 'gutenberg-block-for-slick-slider')}
 									help={
 										arrows
-											? __('Show arrows', 'gb-for-slick-slider')
-											: __('Hide arrows', 'gb-for-slick-slider')
+											? __('Show arrows', 'gutenberg-block-for-slick-slider')
+											: __('Hide arrows', 'gutenberg-block-for-slick-slider')
 									}
 									checked={arrows}
 									__nextHasNoMarginBottom
@@ -303,14 +303,14 @@ export default function Edit(props) {
 							{arrows &&
 								<PanelRow>
 									<SelectControl
-										label={__('Arrow Style', 'gb-for-slick-slider')}
+										label={__('Arrow Style', 'gutenberg-block-for-slick-slider')}
 										value={arrowStyle}
 										__next40pxDefaultSize
 										__nextHasNoMarginBottom
 										options={[
-											{label: __('Chevron (< >)', 'gb-for-slick-slider'), value: 'chevron'},
+											{label: __('Chevron (< >)', 'gutenberg-block-for-slick-slider'), value: 'chevron'},
 											{
-												label: __('Simple Arrow (← →)', 'gb-for-slick-slider'),
+												label: __('Simple Arrow (← →)', 'gutenberg-block-for-slick-slider'),
 												value: 'simple-arrow'
 											}
 										]}
@@ -321,13 +321,13 @@ export default function Edit(props) {
 							{arrows && !dots &&
 								<PanelRow>
 									<SelectControl
-										label={__('Arrow Position', 'gb-for-slick-slider')}
+										label={__('Arrow Position', 'gutenberg-block-for-slick-slider')}
 										value={arrowPosition}
 										__next40pxDefaultSize
 										__nextHasNoMarginBottom
 										options={[
-											{label: __('Sides (Default)', 'gb-for-slick-slider'), value: 'sides'},
-											{label: __('Bottom Center', 'gb-for-slick-slider'), value: 'bottom'}
+											{label: __('Sides (Default)', 'gutenberg-block-for-slick-slider'), value: 'sides'},
+											{label: __('Bottom Center', 'gutenberg-block-for-slick-slider'), value: 'bottom'}
 										]}
 										onChange={(val) => setAttributes({arrowPosition: val})}
 									/>
@@ -337,7 +337,7 @@ export default function Edit(props) {
 								<>
 									<PanelRow>
 										<NumberControl
-											label={__('Arrow font size (px)', 'gb-for-slick-slider')}
+											label={__('Arrow font size (px)', 'gutenberg-block-for-slick-slider')}
 											value={arrowFontSize}
 											min={10}
 											max={100}
@@ -347,7 +347,7 @@ export default function Edit(props) {
 									</PanelRow>
 									<PanelRow>
 										<NumberControl
-											label={__('Arrow Height (px)', 'gb-for-slick-slider')}
+											label={__('Arrow Height (px)', 'gutenberg-block-for-slick-slider')}
 											value={arrowHeight}
 											min={40}
 											max={100}
@@ -357,29 +357,29 @@ export default function Edit(props) {
 									</PanelRow>
 									<PanelRow>
 										<SelectControl
-											label={__('Arrow Border Style', 'gb-for-slick-slider')}
+											label={__('Arrow Border Style', 'gutenberg-block-for-slick-slider')}
 											value={arrowBorderStyle}
 											__next40pxDefaultSize
 											__nextHasNoMarginBottom
 											options={[
-												{label: __('Circle', 'gb-for-slick-slider'), value: 'circle'},
-												{label: __('Rounded', 'gb-for-slick-slider'), value: 'rounded'},
-												{label: __('Square', 'gb-for-slick-slider'), value: 'square'},
-												{label: __('None', 'gb-for-slick-slider'), value: 'none'}
+												{label: __('Circle', 'gutenberg-block-for-slick-slider'), value: 'circle'},
+												{label: __('Rounded', 'gutenberg-block-for-slick-slider'), value: 'rounded'},
+												{label: __('Square', 'gutenberg-block-for-slick-slider'), value: 'square'},
+												{label: __('None', 'gutenberg-block-for-slick-slider'), value: 'none'}
 											]}
 											onChange={(val) => setAttributes({arrowBorderStyle: val})}
 										/>
 									</PanelRow>
 									<PanelRow>
 										<SelectControl
-											label={__('Arrow Border Style', 'gb-for-slick-slider')}
+											label={__('Arrow Border Style', 'gutenberg-block-for-slick-slider')}
 											value={arrowBorderStyle}
 											__next40pxDefaultSize
 											__nextHasNoMarginBottom
 											options={[
-												{label: __('Rounded', 'gb-for-slick-slider'), value: 'rounded'},
-												{label: __('Square', 'gb-for-slick-slider'), value: 'square'},
-												{label: __('None', 'gb-for-slick-slider'), value: 'none'}
+												{label: __('Rounded', 'gutenberg-block-for-slick-slider'), value: 'rounded'},
+												{label: __('Square', 'gutenberg-block-for-slick-slider'), value: 'square'},
+												{label: __('None', 'gutenberg-block-for-slick-slider'), value: 'none'}
 											]}
 											onChange={(val) => setAttributes({arrowBorderStyle: val})}
 										/>
@@ -387,7 +387,7 @@ export default function Edit(props) {
 									<PanelRow>
 										<div style={{marginBottom: '16px'}}>
 											<label style={{display: 'block', marginBottom: '8px', fontWeight: 500}}>
-												{__('Arrow Background Color', 'gb-for-slick-slider')}
+												{__('Arrow Background Color', 'gutenberg-block-for-slick-slider')}
 											</label>
 											<ColorPicker
 												color={arrowBackgroundColor}
@@ -398,7 +398,7 @@ export default function Edit(props) {
 									<PanelRow>
 										<div style={{marginBottom: '16px'}}>
 											<label style={{display: 'block', marginBottom: '8px', fontWeight: 500}}>
-												{__('Arrow Color', 'gb-for-slick-slider')}
+												{__('Arrow Color', 'gutenberg-block-for-slick-slider')}
 											</label>
 											<ColorPicker
 												color={arrowColor}
@@ -412,17 +412,17 @@ export default function Edit(props) {
 					</Panel>
 
 					<Panel>
-						<PanelBody title={__('Responsive Settings', 'gb-for-slick-slider')} initialOpen={false}>
+						<PanelBody title={__('Responsive Settings', 'gutenberg-block-for-slick-slider')} initialOpen={false}>
 							{localResponsive.map(function (breakpoint, index) {
 								return (
 									<div key={index}>
 										<Divider/>
 										<Heading
-											level={2}>{__('Breakpoint', 'gb-for-slick-slider')}: {breakpoint.breakpoint}px</Heading>
+											level={2}>{__('Breakpoint', 'gutenberg-block-for-slick-slider')}: {breakpoint.breakpoint}px</Heading>
 										<Divider/>
 										<PanelRow>
 											<NumberControl
-												label={__('Slides to show', 'gb-for-slick-slider')}
+												label={__('Slides to show', 'gutenberg-block-for-slick-slider')}
 												value={breakpoint.settings.slidesToShow}
 												onChange={(val) => updateResponsiveSettings(breakpoint.breakpoint, 'slidesToShow', Number(val))}
 												__next40pxDefaultSize
@@ -430,7 +430,7 @@ export default function Edit(props) {
 										</PanelRow>
 										<PanelRow>
 											<NumberControl
-												label={__('Slides to scroll', 'gb-for-slick-slider')}
+												label={__('Slides to scroll', 'gutenberg-block-for-slick-slider')}
 												value={breakpoint.settings.slidesToScroll}
 												onChange={(val) => updateResponsiveSettings(breakpoint.breakpoint, 'slidesToScroll', Number(val))}
 												__next40pxDefaultSize
@@ -438,11 +438,11 @@ export default function Edit(props) {
 										</PanelRow>
 										<PanelRow>
 											<ToggleControl
-												label={__('Show Arrows', 'gb-for-slick-slider')}
+												label={__('Show Arrows', 'gutenberg-block-for-slick-slider')}
 												help={
 													breakpoint.settings.arrows
-														? __('Show arrows', 'gb-for-slick-slider')
-														: __('Hide arrows', 'gb-for-slick-slider')
+														? __('Show arrows', 'gutenberg-block-for-slick-slider')
+														: __('Hide arrows', 'gutenberg-block-for-slick-slider')
 												}
 												checked={breakpoint.settings.arrows}
 												__nextHasNoMarginBottom
@@ -451,11 +451,11 @@ export default function Edit(props) {
 										</PanelRow>
 										<PanelRow>
 											<ToggleControl
-												label={__('Show Dots', 'gb-for-slick-slider')}
+												label={__('Show Dots', 'gutenberg-block-for-slick-slider')}
 												help={
 													breakpoint.settings.dots
-														? __('Show dots', 'gb-for-slick-slider')
-														: __('Hide dots', 'gb-for-slick-slider')
+														? __('Show dots', 'gutenberg-block-for-slick-slider')
+														: __('Hide dots', 'gutenberg-block-for-slick-slider')
 												}
 												checked={breakpoint.settings.dots}
 												__nextHasNoMarginBottom
