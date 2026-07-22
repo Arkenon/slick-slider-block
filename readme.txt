@@ -1,14 +1,14 @@
 === Simple Slider Block - Create Sliders From Core Blocks  ===
-Contributors:      arkenon
+Contributors:      arkenon, alkesh7
 Tags:              slider, slider block, carousel, gutenberg, block slider
 Requires at least: 6.1
 Tested up to:      7.0
 Requires PHP:      7.4
-Stable tag:        1.2.4
+Stable tag:        1.2.5
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
-Create sliders from core blocks.
+Create beautiful, responsive sliders from core WordPress blocks using Slick Slider, no coding required, fully customizable in the block editor.
 
 == Description ==
 
@@ -31,6 +31,12 @@ Just add a new Slick Slider Block and start creating your own designs.
 3. Search for the block within the Block Editor (Gutenberg) and begin using.
 
 == Changelog ==
+
+= 1.2.5 =
+* Fixed: Block API version bumped to 3 so the editor renders correctly in WordPress 7.0's iframed block editor
+* Fixed: Text domain now matches the plugin's WordPress.org slug so translations load correctly
+* Improved: Code formatting and inline documentation brought in line with WordPress Coding Standards
+* Added: New contributor
 
 = 1.2.4 =
 * Tested: For WordPress 7.0 compatibility

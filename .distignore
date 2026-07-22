@@ -1,0 +1,11 @@
+.claude
+.git
+.gitignore
+.editorconfig
+.distignore
+node_modules
+src
+phpcs.xml.dist
+phpcs-tool
+package.json
+package-lock.json

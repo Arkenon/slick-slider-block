@@ -1,82 +1,92 @@
 <?php
 /**
- * Server-side rendering for the Slick Slider block
+ * Server-side rendering for the Slick Slider block.
  *
- * @param array $attributes Block attributes.
- * @param string $content Block default content.
- * @param WP_Block $block Block instance.
+ * @param array    $attributes Block attributes.
+ * @param string   $content    Block default content.
+ * @param WP_Block $block      Block instance.
+ *
  * @return string Returns the block content.
+ *
+ * @package Gutenberg Block for Slick Slider
  */
 
-// Extract attributes with defaults
-$dots = $attributes['dots'] ?? false;
-$arrows = $attributes['arrows'] ?? true;
-$infinite = $attributes['infinite'] ?? false;
-$center_mode = $attributes['centerMode'] ?? false;
-$adaptive_height = $attributes['adaptiveHeight'] ?? false;
-$autoplay = $attributes['autoplay'] ?? false;
-$autoplay_speed = $attributes['autoplaySpeed'] ?? 1500;
-$fade = $attributes['fade'] ?? false;
-$slides_to_show = $attributes['slidesToShow'] ?? 2;
-$slide_speed = $attributes['slideSpeed'] ?? 1000;
-$slides_to_scroll = $attributes['slidesToScroll'] ?? 1;
-$slide_margin = $attributes['slideMargin'] ?? 0;
-$arrow_style = $attributes['arrowStyle'] ?? 'chevron';
-$arrow_border_style = $attributes['arrowBorderStyle'] ?? 'circle';
-$arrow_background_color = $attributes['arrowBackgroundColor'] ?? '#ffffff00';
-$arrow_color = $attributes['arrowColor'] ?? '#d3d1d1';
-$arrow_position = $attributes['arrowPosition'] ?? 'sides';
-$arrow_font_size = $attributes['arrowFontSize'] ?? 20;
-$arrow_height = $attributes['arrowHeight'] ?? 40;
-$responsive = $attributes['responsive'] ?? [];
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
-// Build Slick options JSON
-$slick_options = [
-	'dots' => $dots,
-	'arrows' => $arrows,
-	'slidesToShow' => $slides_to_show,
-	'slidesToScroll' => $slides_to_scroll,
-	'infinite' => $infinite,
-	'adaptiveHeight' => $adaptive_height,
-	'autoplay' => $autoplay,
-	'autoplaySpeed' => $autoplay_speed,
-	'fade' => $fade,
-	'speed' => $slide_speed,
-	'centerMode' => $center_mode,
-	'responsive' => $responsive
-];
+// Extract attributes with defaults.
+$gb_dots                   = $attributes['dots'] ?? false;
+$gb_arrows                 = $attributes['arrows'] ?? true;
+$gb_infinite               = $attributes['infinite'] ?? false;
+$gb_center_mode            = $attributes['centerMode'] ?? false;
+$gb_adaptive_height        = $attributes['adaptiveHeight'] ?? false;
+$gb_autoplay               = $attributes['autoplay'] ?? false;
+$gb_autoplay_speed         = $attributes['autoplaySpeed'] ?? 1500;
+$gb_fade                   = $attributes['fade'] ?? false;
+$gb_slides_to_show         = $attributes['slidesToShow'] ?? 2;
+$gb_slide_speed            = $attributes['slideSpeed'] ?? 1000;
+$gb_slides_to_scroll       = $attributes['slidesToScroll'] ?? 1;
+$gb_slide_margin           = $attributes['slideMargin'] ?? 0;
+$gb_arrow_style            = $attributes['arrowStyle'] ?? 'chevron';
+$gb_arrow_border_style     = $attributes['arrowBorderStyle'] ?? 'circle';
+$gb_arrow_background_color = $attributes['arrowBackgroundColor'] ?? '#ffffff00';
+$gb_arrow_color            = $attributes['arrowColor'] ?? '#d3d1d1';
+$gb_arrow_position         = $attributes['arrowPosition'] ?? 'sides';
+$gb_arrow_font_size        = $attributes['arrowFontSize'] ?? 20;
+$gb_arrow_height           = $attributes['arrowHeight'] ?? 40;
+$gb_responsive             = $attributes['responsive'] ?? array();
 
-// Create arrow style classes
-$arrow_style_class = $arrow_style ? 'arrow-style-' . $arrow_style : '';
-$arrow_border_class = $arrow_border_style ? 'arrow-border-style-' . $arrow_border_style : '';
-$arrow_position_class = $arrow_position ? 'arrow-position-' . $arrow_position : '';
-$custom_arrow_class = trim($arrow_style_class . ' ' . $arrow_border_class . ' ' . $arrow_position_class);
-
-// Create CSS custom properties for dynamic styling
-$inline_styles = sprintf(
-	'style="--arrow-bg-color: %s;--arrow-color: %s; --arrow-font-size: %dpx; --arrow-height: %dpx;"',
-	esc_attr($arrow_background_color),
-	esc_attr($arrow_color),
-	esc_attr(intval($arrow_font_size)),
-	esc_attr(intval($arrow_height))
+// Build Slick options JSON.
+$gb_slick_options = array(
+	'dots'           => $gb_dots,
+	'arrows'         => $gb_arrows,
+	'slidesToShow'   => $gb_slides_to_show,
+	'slidesToScroll' => $gb_slides_to_scroll,
+	'infinite'       => $gb_infinite,
+	'adaptiveHeight' => $gb_adaptive_height,
+	'autoplay'       => $gb_autoplay,
+	'autoplaySpeed'  => $gb_autoplay_speed,
+	'fade'           => $gb_fade,
+	'speed'          => $gb_slide_speed,
+	'centerMode'     => $gb_center_mode,
+	'responsive'     => $gb_responsive,
 );
 
-// Get wrapper attributes
-$wrapper_attributes = get_block_wrapper_attributes([
-	'class' => trim($custom_arrow_class),
-	'data-slick' => wp_json_encode($slick_options)
-]);
+// Create arrow style classes.
+$gb_arrow_style_class    = $gb_arrow_style ? 'arrow-style-' . $gb_arrow_style : '';
+$gb_arrow_border_class   = $gb_arrow_border_style ? 'arrow-border-style-' . $gb_arrow_border_style : '';
+$gb_arrow_position_class = $gb_arrow_position ? 'arrow-position-' . $gb_arrow_position : '';
+$gb_custom_arrow_class   = trim( $gb_arrow_style_class . ' ' . $gb_arrow_border_class . ' ' . $gb_arrow_position_class );
 
-// Render inner blocks
-$inner_blocks_content = '';
-if (!empty($block->inner_blocks)) {
-	foreach ($block->inner_blocks as $inner_block) {
-		$inner_blocks_content .= $inner_block->render();
+// Create CSS custom properties for dynamic styling.
+$gb_inline_styles = sprintf(
+	'style="--arrow-bg-color: %s;--arrow-color: %s; --arrow-font-size: %dpx; --arrow-height: %dpx;"',
+	esc_attr( $gb_arrow_background_color ),
+	esc_attr( $gb_arrow_color ),
+	esc_attr( intval( $gb_arrow_font_size ) ),
+	esc_attr( intval( $gb_arrow_height ) )
+);
+
+// Get wrapper attributes.
+$gb_wrapper_attributes = get_block_wrapper_attributes(
+	array(
+		'class'      => trim( $gb_custom_arrow_class ),
+		'data-slick' => wp_json_encode( $gb_slick_options ),
+	)
+);
+
+// Render inner blocks.
+$gb_inner_blocks_content = '';
+if ( ! empty( $block->inner_blocks ) ) {
+	foreach ( $block->inner_blocks as $gb_inner_block ) {
+		$gb_inner_blocks_content .= $gb_inner_block->render();
 	}
 }
 
-// Render the block
+// Render the block.
 ?>
-<section <?php echo $wrapper_attributes; ?> <?php echo $inline_styles; ?>>
-	<?php echo wp_kses_post($inner_blocks_content); ?>
+<section <?php echo $gb_wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- get_block_wrapper_attributes() already escapes its output. ?> <?php echo $gb_inline_styles; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- every value interpolated above is already passed through esc_attr(). ?>>
+	<?php echo wp_kses_post( $gb_inner_blocks_content ); ?>
 </section>
