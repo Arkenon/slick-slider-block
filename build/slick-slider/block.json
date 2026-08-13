@@ -138,7 +138,7 @@
       ]
     }
   },
-  "textdomain": "gutenberg-block-for-slick-slider",
+  "textdomain": "gb-for-slick-slider",
   "editorScript": "file:./index.js",
   "editorStyle": "file:./index.css",
   "style": "file:./style-index.css",

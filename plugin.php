@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name:       Simple Slider Block - Create Sliders From Core Blocks
- * Plugin URI:        https://wordpress.org/plugins/gutenberg-block-for-slick-slider/
+ * Plugin URI:        https://wordpress.org/plugins/gb-for-slick-slider/
  * Description:       A Gutenberg block for creating a simple slider using Slick Slider with core blocks. It is compatible with the core blocks like Cover, Image, and more.
  * Requires at least: 6.1
  * Requires PHP:      7.4
@@ -10,7 +10,7 @@
  * Author URI:        https://github.com/Arkenon
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       gutenberg-block-for-slick-slider
+ * Text Domain:       gb-for-slick-slider
  *
  * @package           Gutenberg Block for Slick Slider
  */
