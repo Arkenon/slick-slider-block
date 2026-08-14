@@ -1,0 +1,8 @@
+build/
+node_modules/
+
+# Vendored Slick 1.8 - kept byte-identical to upstream.
+assets/slick/
+
+# Empty legacy file, no longer enqueued.
+assets/css/custom.css

@@ -1,0 +1,357 @@
+/**
+ * Editor styles shared by every slider block's inspector and preview.
+ *
+ * Imported from each block's editor.scss so wp-scripts compiles it into the
+ * right bundle.
+ */
+
+/* -----------------------------------------------------------------------
+ * Inspector
+ * --------------------------------------------------------------------- */
+
+.gbss-inspector__hint {
+	margin: 0 0 16px;
+	color: #757575;
+	font-size: 12px;
+	font-style: normal;
+}
+
+.gbss-inspector__label {
+	margin: 0 0 8px;
+	font-size: 11px;
+	font-weight: 500;
+	line-height: 1.4;
+	text-transform: uppercase;
+}
+
+.gbss-icon-picker {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 4px;
+	margin-bottom: 16px;
+
+	&__button.components-button {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 40px;
+		width: 100%;
+		padding: 0;
+		border: 1px solid #ddd;
+		border-radius: 2px;
+
+		&.is-pressed {
+			border-color: var(--wp-admin-theme-color, #3858e9);
+			box-shadow: inset 0 0 0 1px var(--wp-admin-theme-color, #3858e9);
+		}
+	}
+}
+
+/* -----------------------------------------------------------------------
+ * In-canvas preview
+ *
+ * Slick never runs in the editor, so the slides are laid out as a simple
+ * scrollable row. Arrow and dot containers reuse the front-end classes and
+ * therefore pick up the real positioning rules from style.scss.
+ * --------------------------------------------------------------------- */
+
+.gbss {
+
+	.gbss__viewport {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		align-items: stretch;
+		gap: 0;
+		overflow-x: auto;
+		padding: 15px;
+		border: 1px dashed #c3c4c7;
+		border-radius: 2px;
+	}
+
+	// Preview arrows and dots are decoration, not controls.
+	.gbss__arrows,
+	.gbss__dots {
+		pointer-events: none;
+		user-select: none;
+	}
+
+	.gbss__arrows .gbss__arrow {
+		cursor: default;
+	}
+
+	.block-list-appender {
+		display: flex;
+		align-items: center;
+		flex: 0 0 auto;
+		padding-inline-start: 8px;
+	}
+}
+
+/* -----------------------------------------------------------------------
+ * Template picker
+ * --------------------------------------------------------------------- */
+
+.gbss-template-picker {
+
+	// Placeholder lays its children out in a wrapping flex ROW, which turns the
+	// filters and the grid into two columns. This picker is a single column.
+	.components-placeholder__fieldset {
+		flex-direction: column;
+		flex-wrap: nowrap;
+		gap: 16px;
+	}
+
+	.components-placeholder__instructions {
+		margin-bottom: 4px;
+	}
+
+	&__filters {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		width: 100%;
+	}
+
+	&__grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+		gap: 12px;
+		width: 100%;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+
+		> li {
+			margin: 0;
+			list-style: none;
+		}
+	}
+
+	&__empty {
+		margin: 0;
+		color: #757575;
+	}
+}
+
+.gbss-template.components-button {
+	display: block;
+	height: auto;
+	width: 100%;
+	padding: 8px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	text-align: start;
+	white-space: normal;
+
+	&:hover,
+	&:focus {
+		border-color: var(--wp-admin-theme-color, #3858e9);
+	}
+
+	.gbss-template__name {
+		display: block;
+		margin-top: 8px;
+		font-weight: 600;
+		line-height: 1.4;
+	}
+
+	.gbss-template__description {
+		display: block;
+		margin-top: 2px;
+		color: #757575;
+		font-size: 12px;
+		line-height: 1.4;
+	}
+}
+
+/* Schematic preview -------------------------------------------------------
+ *
+ * The slide strip is the only flexible row; every navigation element is
+ * absolutely positioned on top of it so that a preset never changes the
+ * strip's size and all previews in the grid stay the same height.
+ */
+
+.gbss-template__preview {
+	position: relative;
+	display: flex;
+	height: 76px;
+	padding: 20px;
+	border-radius: 3px;
+	background: #f0f0f1;
+	overflow: hidden;
+
+	&.is-tall {
+		height: 96px;
+	}
+
+}
+
+.gbss-template__slides {
+	display: flex;
+	flex: 1;
+	gap: 3px;
+	min-width: 0;
+}
+
+.gbss-template__preview.has-bottom-nav .gbss-template__slides {
+	margin-block-end: 12px;
+}
+
+.gbss-template__slide {
+	flex: 1;
+	min-width: 0;
+	border-radius: 2px;
+	background: #c3c4c7;
+
+	&.is-active {
+		background: #8c8f94;
+	}
+}
+
+.gbss-template__arrows {
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+	z-index: 1;
+	margin: 2px;
+}
+
+.gbss-template__arrow {
+	align-items: center;
+    color: #b4b7b9;
+    display: flex;
+    height: 5px;
+    justify-content: center;
+    position: absolute;
+    width: 5px;
+    padding: 3px;
+
+	// The icon is drawn pointing left; "next" mirrors it, exactly as on the
+	// front end.
+	&.is-next svg {
+		transform: scaleX(-1);
+	}
+}
+
+// Vertically centred pairs, hugging the outer or inner edge.
+.gbss-template__arrows.is-sides,
+.gbss-template__arrows.is-sides-inside {
+
+	.gbss-template__arrow {
+		inset-block-start: 50%;
+		transform: translateY(-50%);
+	}
+
+	.gbss-template__arrow.is-prev {
+		inset-inline-start: 1px;
+	}
+
+	.gbss-template__arrow.is-next {
+		inset-inline-end: 1px;
+	}
+}
+
+.gbss-template__arrows.is-sides-inside .gbss-template__arrow {
+
+	&.is-prev {
+		inset-inline-start: 13px;
+	}
+
+	&.is-next {
+		inset-inline-end: 13px;
+	}
+}
+
+// Corner and bottom pairs sit side by side.
+.gbss-template__arrows.is-top-right,
+.gbss-template__arrows.is-bottom-right,
+.gbss-template__arrows.is-bottom-left,
+.gbss-template__arrows.is-bottom {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+	inset: auto;
+
+	.gbss-template__arrow {
+		position: static;
+	}
+}
+
+.gbss-template__arrows.is-top-right {
+	inset-block-start: 3px;
+	inset-inline-end: 3px;
+}
+
+.gbss-template__arrows.is-bottom-right {
+	inset-block-end: 3px;
+	inset-inline-end: 3px;
+}
+
+.gbss-template__arrows.is-bottom-left {
+	inset-block-end: 3px;
+	inset-inline-start: 3px;
+}
+
+.gbss-template__arrows.is-bottom {
+	inset-block-end: 3px;
+	inset-inline: 0;
+	justify-content: center;
+}
+
+// Split: one arrow at each end of the bottom edge, dots between them.
+.gbss-template__arrows.is-split-bottom .gbss-template__arrow {
+	inset-block-end: 3px;
+
+	&.is-prev {
+		inset-inline-start: 3px;
+	}
+
+	&.is-next {
+		inset-inline-end: 3px;
+	}
+}
+
+.gbss-template__dots {
+	position: absolute;
+	display: flex;
+	align-items: center;
+	gap: 3px;
+	inset-inline: 10px;
+	inset-block-end: 5px;
+	justify-content: center;
+
+	&.is-bottom-left {
+		justify-content: flex-start;
+	}
+
+	&.is-bottom-right {
+		justify-content: flex-end;
+	}
+
+	// Keep clear of the two arrows sharing the bottom edge (the slide strip
+	// sits between the two containers, so this is a general sibling match).
+	.gbss-template__arrows.is-split-bottom ~ & {
+		inset-inline: 24px;
+	}
+}
+
+.gbss-template__dot {
+	width: 5px;
+	height: 5px;
+	border-radius: 50%;
+	background: #fff;
+	box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.12);
+
+	&.is-active {
+		background: #50575e;
+		box-shadow: none;
+	}
+}
+
+.gbss-template__progress {
+	width: 60%;
+	height: 3px;
+	border-radius: 999px;
+	background: linear-gradient(to right, #50575e 35%, #c3c4c7 35%);
+}

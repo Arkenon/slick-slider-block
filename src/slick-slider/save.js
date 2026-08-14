@@ -1,6 +1,13 @@
 import {useBlockProps, useInnerBlocksProps} from '@wordpress/block-editor';
 import './style.scss';
 
+/**
+ * NOTE: this block is dynamic - the front-end markup comes from render.php and
+ * the output below is never displayed. It is kept byte-for-byte as it was in 1.x
+ * on purpose: this markup is already stored in the post content of every
+ * existing installation, and changing it would invalidate those blocks. Do not
+ * "modernise" this function; add a `deprecated` entry first if it ever must change.
+ */
 export default function save(props) {
 
 	const blockProps = useBlockProps.save(props);

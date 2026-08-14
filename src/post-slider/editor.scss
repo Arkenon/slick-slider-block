@@ -1,0 +1,26 @@
+/**
+ * Editor-only styles for the Post Slider block.
+ */
+
+@use "../shared/inspector";
+
+.wp-block-gb-for-slick-slider-post-slider {
+
+	.gbss__viewport {
+		gap: 0;
+	}
+
+	// Read-only previews are click targets that switch which slide is editable.
+	.block-editor-block-preview__live-content {
+		cursor: pointer;
+	}
+}
+
+.gbss-post-slider__notice {
+	margin: 0;
+	padding: 16px;
+	border: 1px dashed #c3c4c7;
+	border-radius: 2px;
+	color: #757575;
+	text-align: center;
+}

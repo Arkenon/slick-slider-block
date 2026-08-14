@@ -2,11 +2,12 @@
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
 	"name": "gb-for-slick-slider/slick-slider",
-	"version": "1.0.0",
-	"title": "Slick Slider",
+	"version": "2.0.0",
+	"title": "Simple Slider",
 	"category": "widgets",
 	"icon": "admin-page",
-	"description": "Slick Slider Block wrapper.",
+	"description": "Build a slider out of core blocks. Start from a template, then style the arrows and pagination.",
+	"keywords": [ "slider", "carousel", "slideshow", "slick" ],
 	"supports": {
 		"html": false,
 		"align": true,
@@ -95,6 +96,58 @@
 		"arrowHeight": {
 			"type": "number",
 			"default": 40
+		},
+		"pauseOnHover": {
+			"type": "boolean",
+			"default": true
+		},
+		"arrowBorderColor": {
+			"type": "string",
+			"default": "#d3d1d1"
+		},
+		"arrowBorderWidth": {
+			"type": "number",
+			"default": 1
+		},
+		"arrowGap": {
+			"type": "number",
+			"default": 5
+		},
+		"arrowHoverColor": {
+			"type": "string",
+			"default": ""
+		},
+		"arrowHoverBackgroundColor": {
+			"type": "string",
+			"default": ""
+		},
+		"arrowShadow": {
+			"type": "boolean",
+			"default": false
+		},
+		"dotStyle": {
+			"type": "string",
+			"default": "dots"
+		},
+		"dotPosition": {
+			"type": "string",
+			"default": "bottom-center"
+		},
+		"dotColor": {
+			"type": "string",
+			"default": "#d3d1d1"
+		},
+		"dotActiveColor": {
+			"type": "string",
+			"default": "#000000"
+		},
+		"dotSize": {
+			"type": "number",
+			"default": 10
+		},
+		"dotGap": {
+			"type": "number",
+			"default": 8
 		},
 		"responsive": {
 			"type": "array",

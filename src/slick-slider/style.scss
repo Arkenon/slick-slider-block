@@ -1,178 +1,432 @@
 /**
- * Slick Slider Block Styles
+ * Slick Slider Block - front-end styles.
+ *
+ * Structure produced by includes/render-helpers.php:
+ *
+ *   .gbss                 flex column, positioning context
+ *     .gbss__arrows       Slick appendArrows target
+ *     .gbss__viewport     Slick is initialised here
+ *     .gbss__dots         Slick appendDots target
+ *
+ * Arrow and dot placement is driven by `order` (in-flow presets) or absolute
+ * positioning (overlay presets), never by !important overrides. Directional
+ * values use logical properties so RTL needs no separate rule set.
  */
 
-.wp-block-gb-for-slick-slider-slick-slider {
+/* Placement presets are grouped by feature rather than sorted by specificity so
+   the file stays readable. Each group targets a different wrapper modifier, so
+   they never actually compete. */
+/* stylelint-disable no-descending-specificity */
 
-	/*
- * Contains custom styles for the Slick Slider.
- * This file is used to override default styles and add custom styles for the slider.
- */
+.gbss {
+	display: flex;
+	flex-direction: column;
+	position: relative;
 
-	.slick-prev:before, .slick-next:before {
-		font-family: 'system-ui' !important;
-		font-size: var(--arrow-font-size) !important;
+	&__viewport {
+		order: 10;
+		min-width: 0;
 	}
 
-	.slick-prev {
-		left: -45px !important;
+	&__arrows,
+	&__dots {
+		display: flex;
+		align-items: center;
+		gap: var(--gbss-arrow-gap, 5px);
 	}
 
-	.slick-next {
-		right: -45px !important;
+	&__arrows {
+		order: 20;
+		justify-content: center;
+		margin-block-start: var(--gbss-arrow-gap, 5px);
 	}
 
-	/* RTL Support - Fixed with proper CSS reset */
-	[dir='rtl'] .slick-prev {
-		left: auto !important;
-		right: -45px !important;
+	&__dots {
+		order: 30;
+		justify-content: center;
+		margin-block-start: calc(var(--gbss-dot-gap, 8px) * 1.5);
 	}
 
-	[dir='rtl'] .slick-next {
-		right: auto !important;
-		left: -45px !important;
+	// Hide empty containers so they never add stray spacing.
+	&__arrows:empty,
+	&__dots:empty {
+		display: none;
 	}
 
-	/* Alternative RTL selector for broader compatibility */
-	.rtl .slick-prev {
-		left: auto !important;
-		right: -45px !important;
-	}
+	/* -----------------------------------------------------------------------
+	 * Arrows
+	 * --------------------------------------------------------------------- */
 
-	.rtl .slick-next {
-		right: auto !important;
-		left: -45px !important;
-	}
+	// Specificity of `.gbss .gbss__arrow` beats slick-theme's `.slick-prev`,
+	// so none of this needs !important.
+	.gbss__arrow {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		flex: 0 0 auto;
 
+		// Reset slick-theme's absolute positioning; placement is handled by the
+		// container or by the position presets below.
+		position: static;
+		inset: auto;
+		transform: none;
+		margin: 0;
+		padding: 0;
 
-	// Full-width slider arrow positioning
-	&.alignfull {
-		.slick-prev {
-			left: 35px !important;
-			z-index: 999;
+		width: var(--gbss-arrow-size, 40px);
+		height: var(--gbss-arrow-size, 40px);
+
+		color: var(--gbss-arrow-color, #d3d1d1);
+		background-color: var(--gbss-arrow-bg, transparent);
+		border: var(--gbss-arrow-stroke, 1px) solid var(--gbss-arrow-stroke-color, #d3d1d1);
+
+		cursor: pointer;
+		opacity: 0.8;
+		transition: opacity 0.2s ease, color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+
+		// slick-theme draws the arrow glyph with an icon font; the SVG replaces it.
+		&::before {
+			content: none;
+			display: none;
 		}
 
-		.slick-next {
-			right: 35px !important;
-			z-index: 999;
+		&:hover,
+		&:focus-visible {
+			opacity: 1;
+			color: var(--gbss-arrow-hover-color, var(--gbss-arrow-color, #d3d1d1));
+			background-color: var(--gbss-arrow-hover-bg, var(--gbss-arrow-bg, transparent));
 		}
 
-		// RTL positioning for full-width sliders
-		[dir="rtl"] &,
-		&:dir(rtl) {
-			.slick-prev {
-				left: auto !important;
-				right: 35px !important;
+		&.slick-disabled {
+			opacity: 0.35;
+			cursor: default;
+		}
+
+		&.slick-hidden {
+			display: none;
+		}
+	}
+
+	.gbss__arrow-icon {
+		width: var(--gbss-arrow-icon-size, 20px);
+		height: var(--gbss-arrow-icon-size, 20px);
+		display: block;
+	}
+
+	// A single left-pointing icon is drawn and mirrored for "next", which keeps
+	// the pair symmetrical. In RTL both flip.
+	.gbss__arrow--next .gbss__arrow-icon {
+		transform: scaleX(-1);
+	}
+
+	&:dir(rtl) {
+
+		.gbss__arrow--prev .gbss__arrow-icon {
+			transform: scaleX(-1);
+		}
+
+		.gbss__arrow--next .gbss__arrow-icon {
+			transform: none;
+		}
+	}
+
+	&--arrow-shadow .gbss__arrow {
+		box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+	}
+
+	// Arrow shapes.
+	&--arrow-shape-square .gbss__arrow {
+		border-radius: 0;
+	}
+
+	&--arrow-shape-rounded .gbss__arrow {
+		border-radius: 20%;
+	}
+
+	&--arrow-shape-circle .gbss__arrow {
+		border-radius: 50%;
+	}
+
+	&--arrow-shape-none .gbss__arrow {
+		border: none;
+	}
+
+	/* -----------------------------------------------------------------------
+	 * Arrow placement presets
+	 * --------------------------------------------------------------------- */
+
+	// Overlay presets share the same absolutely positioned container.
+	&--arrows-sides,
+	&--arrows-sides-inside {
+
+		.gbss__arrows {
+			position: absolute;
+			inset-block-start: 0;
+			inset-inline: 0;
+			height: 100%;
+			margin: 0;
+			pointer-events: none;
+			z-index: 2;
+		}
+
+		.gbss__arrow {
+			position: absolute;
+			inset-block-start: 50%;
+			transform: translateY(-50%);
+			pointer-events: auto;
+		}
+	}
+
+	// Outside the viewport - the 1.x default.
+	&--arrows-sides {
+
+		.gbss__arrow--prev {
+			inset-inline-start: calc(-1 * (var(--gbss-arrow-size, 40px) + var(--gbss-arrow-gap, 5px)));
+		}
+
+		.gbss__arrow--next {
+			inset-inline-end: calc(-1 * (var(--gbss-arrow-size, 40px) + var(--gbss-arrow-gap, 5px)));
+		}
+
+		// Full-width sliders have no outer room, so pull the arrows inside.
+		&.alignfull {
+
+			.gbss__arrow--prev {
+				inset-inline-start: 35px;
 			}
 
-			.slick-next {
-				right: auto !important;
-				left: 35px !important;
+			.gbss__arrow--next {
+				inset-inline-end: 35px;
 			}
 		}
 	}
 
-	// Arrow content variants
-	&.arrow-style-chevron {
-		.slick-prev:before {
-			content: "<" !important;
+	&--arrows-sides-inside {
+
+		.gbss__arrow--prev {
+			inset-inline-start: var(--gbss-arrow-gap, 5px);
 		}
 
-		.slick-next:before {
-			content: ">" !important;
-		}
-
-		// RTL arrow content
-		[dir="rtl"] &,
-		&:dir(rtl) {
-			.slick-prev:before {
-				content: ">" !important;
-			}
-
-			.slick-next:before {
-				content: "<" !important;
-			}
+		.gbss__arrow--next {
+			inset-inline-end: var(--gbss-arrow-gap, 5px);
 		}
 	}
 
-	// Arrow border styles - shared properties
-	&.arrow-border-style-circle,
-	&.arrow-border-style-square,
-	&.arrow-border-style-rounded,
-	&.arrow-border-style-none {
-		.slick-prev,
-		.slick-next {
-			background-color: var(--arrow-bg-color) !important;
-			height: var(--arrow-height) !important;
-			width: var(--arrow-height) !important;
-			opacity: 0.8;
-			border: 1px solid #d3d1d1;
+	// In-flow presets.
+	&--arrows-bottom .gbss__arrows {
+		justify-content: center;
+	}
 
-			&:before {
-				line-height: 0.5;
-				color: var(--arrow-color) !important;
+	&--arrows-bottom-left .gbss__arrows {
+		justify-content: flex-start;
+	}
+
+	&--arrows-bottom-right .gbss__arrows {
+		justify-content: flex-end;
+	}
+
+	&--arrows-top-right .gbss__arrows {
+		order: 5;
+		justify-content: flex-end;
+		margin-block: 0 var(--gbss-arrow-gap, 5px);
+	}
+
+	// Arrows pushed to both ends of the bottom row, dots centred between them.
+	&--arrows-split-bottom {
+
+		.gbss__arrows {
+			justify-content: space-between;
+			min-height: var(--gbss-arrow-size, 40px);
+		}
+
+		.gbss__dots {
+			position: absolute;
+			inset-inline: 0;
+			inset-block-end: 0;
+			height: var(--gbss-arrow-size, 40px);
+			margin: 0;
+			justify-content: center;
+			pointer-events: none;
+		}
+
+		.gbss__dots .slick-dots {
+			pointer-events: auto;
+		}
+	}
+
+	/* -----------------------------------------------------------------------
+	 * Dots
+	 * --------------------------------------------------------------------- */
+
+	.slick-dots {
+		// Reset slick-theme's absolute bottom placement.
+		position: static;
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: inherit;
+		gap: var(--gbss-dot-gap, 8px);
+		width: auto;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+
+		li {
+			display: flex;
+			width: auto;
+			height: auto;
+			margin: 0;
+			padding: 0;
+		}
+
+		li button {
+			display: block;
+			width: var(--gbss-dot-size, 10px);
+			height: var(--gbss-dot-size, 10px);
+			padding: 0;
+			border: none;
+			background-color: var(--gbss-dot-color, #d3d1d1);
+			font-size: 0;
+			line-height: 0;
+			color: transparent;
+			cursor: pointer;
+			opacity: 0.7;
+			transition: opacity 0.2s ease, background-color 0.2s ease, width 0.3s ease;
+
+			// slick-theme renders the bullet with an icon font.
+			&::before {
+				content: none;
+				display: none;
 			}
 
-			&:hover {
+			&:hover,
+			&:focus-visible {
 				opacity: 1;
 			}
 		}
-	}
 
-	// Border-specific styles
-	&.arrow-border-style-square {
-		.slick-prev, .slick-next {
-			border-radius: 0;
+		li.slick-active button {
+			background-color: var(--gbss-dot-active-color, #000);
+			opacity: 1;
 		}
 	}
 
-	&.arrow-border-style-rounded {
-		.slick-prev, .slick-next {
-			border-radius: 20%;
-		}
+	// Dot shapes.
+	&--dot-style-dots .slick-dots li button {
+		border-radius: 50%;
 	}
 
-	&.arrow-border-style-circle {
-		.slick-prev, .slick-next {
-			border-radius: 50%;
-		}
+	&--dot-style-bars .slick-dots li button {
+		width: calc(var(--gbss-dot-size, 10px) * 2.5);
+		height: calc(var(--gbss-dot-size, 10px) * 0.4);
+		border-radius: 999px;
 	}
 
-	&.arrow-border-style-none {
-		.slick-prev, .slick-next {
-			border: none;
-		}
+	&--dot-style-bars .slick-dots li.slick-active button {
+		width: calc(var(--gbss-dot-size, 10px) * 5);
 	}
 
-	// Arrow position styles
-	&.arrow-position-bottom {
-		.slick-prev,
-		.slick-next {
-			top: auto;
-			z-index: 999;
-			bottom: 0;
-			transform: translateY(120%);
+	&--dot-style-lines .slick-dots li button {
+		width: calc(var(--gbss-dot-size, 10px) * 3);
+		height: 2px;
+		border-radius: 0;
+	}
+
+	&--dot-style-numbers .slick-dots li button {
+		width: auto;
+		height: auto;
+		min-width: calc(var(--gbss-dot-size, 10px) * 2.4);
+		padding: 0.25em 0.5em;
+		border-radius: 999px;
+		background-color: transparent;
+		color: var(--gbss-dot-color, #d3d1d1);
+		font-size: calc(var(--gbss-dot-size, 10px) * 1.2);
+		line-height: 1.4;
+		text-align: center;
+	}
+
+	&--dot-style-numbers .slick-dots li.slick-active button {
+		background-color: var(--gbss-dot-active-color, #000);
+		color: #fff;
+	}
+
+	// Progress bar replaces the individual indicators.
+	&__progress {
+		display: block;
+		width: min(240px, 60%);
+		height: calc(var(--gbss-dot-size, 10px) * 0.4);
+		border-radius: 999px;
+		background-color: var(--gbss-dot-color, #d3d1d1);
+		overflow: hidden;
+	}
+
+	&__progress-fill {
+		display: block;
+		width: 0;
+		height: 100%;
+		border-radius: inherit;
+		background-color: var(--gbss-dot-active-color, #000);
+		transition: width 0.3s ease;
+	}
+
+	/* -----------------------------------------------------------------------
+	 * Dot placement presets
+	 * --------------------------------------------------------------------- */
+
+	&--dots-bottom-left .gbss__dots {
+		justify-content: flex-start;
+	}
+
+	&--dots-bottom-right .gbss__dots {
+		justify-content: flex-end;
+	}
+
+	&--dots-top-center .gbss__dots {
+		order: 6;
+		justify-content: center;
+		margin-block: 0 calc(var(--gbss-dot-gap, 8px) * 1.5);
+	}
+
+	&--dots-overlay-bottom .gbss__dots {
+		position: absolute;
+		inset-inline: 0;
+		inset-block-end: calc(var(--gbss-dot-gap, 8px) * 1.5);
+		margin: 0;
+		justify-content: center;
+		z-index: 2;
+	}
+
+	&--dots-right-vertical,
+	&--dots-left-vertical {
+
+		.gbss__dots {
 			position: absolute;
+			inset-block-start: 50%;
+			transform: translateY(-50%);
+			margin: 0;
+			z-index: 2;
 		}
 
-		.slick-prev {
-			left: calc(50% - (var(--arrow-height) / 2) - 5px) !important;
+		.slick-dots {
+			flex-direction: column;
 		}
+	}
 
-		.slick-next {
-			left: calc(50% + (var(--arrow-height) / 2) + 5px) !important;
-		}
+	&--dots-right-vertical .gbss__dots {
+		inset-inline-end: calc(var(--gbss-dot-gap, 8px) * 1.5);
+	}
 
-		// RTL support for bottom positioned arrows
-		[dir="rtl"] &,
-		&:dir(rtl) {
-			.slick-prev {
-				left: calc(50% + 10px);
-			}
+	&--dots-left-vertical .gbss__dots {
+		inset-inline-start: calc(var(--gbss-dot-gap, 8px) * 1.5);
+	}
 
-			.slick-next {
-				left: calc(50% - 50px);
-			}
-		}
+	/* -----------------------------------------------------------------------
+	 * Slides
+	 * --------------------------------------------------------------------- */
+
+	// Slides of the dynamic Post Slider are generated by PHP and get their gap
+	// here. Slides of the manual slider carry inline margins from 1.x markup.
+	&--dynamic .gbss__viewport .slick-slide > .gbss-slide {
+		margin-inline: var(--gbss-slide-gap, 0);
 	}
 }

@@ -1,0 +1,6 @@
+/**
+ * The Post Slider shares the Slick Slider's front-end stylesheet; importing it
+ * here keeps the two blocks visually identical from a single source.
+ */
+
+@use "../slick-slider/style";

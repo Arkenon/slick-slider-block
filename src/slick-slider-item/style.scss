@@ -1,10 +1,10 @@
 /**
- * The following styles get applied both on the front of your site
- * and in the editor.
+ * Slide styles that apply both on the front end and in the editor.
  *
- * Replace them with your own styles or remove the file completely.
+ * The horizontal gap is written as an inline margin by save.js (kept from 1.x),
+ * so there is nothing to set here beyond making a slide fill its track cell.
  */
 
 .wp-block-gb-for-slick-slider-slick-slider-item {
-
+	height: 100%;
 }

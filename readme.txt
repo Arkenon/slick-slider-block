@@ -1,10 +1,10 @@
 === Simple Slider Block - Create Sliders From Core Blocks  ===
 Contributors:      arkenon, alkesh7
 Tags:              slider, slider block, carousel, gutenberg, block slider
-Requires at least: 6.1
+Requires at least: 6.5
 Tested up to:      7.0
 Requires PHP:      7.4
-Stable tag:        1.2.5
+Stable tag:        2.0.0
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -18,25 +18,59 @@ It is compatible with the core blocks like Cover, Image, and more.
 
 Simple Slider Block Plugin uses Slick Slider to create sliders from core blocks.
 You can convert your blocks to a slider with Simple Slider Block Plugin.
-Just add a new Slick Slider Block and start creating your own designs.
+Just add a new Simple Slider Block or Simple Post Slider Block and start creating your own designs.
 
+= Two blocks =
+
+* **Simple Slider** - build slides by hand from any core blocks.
+* **Simple Post Slider** - design one slide and it repeats for every post in a query. Works with Post Title, Featured Image, Excerpt and the rest of the post blocks, and can inherit the query of the archive template it sits in.
+
+= Arrows and pagination =
+
+Seven arrow icons, seven placements (outside, over the slider, above, below, split around the pagination), plus shape, size, border and hover colours. Pagination comes as dots, expanding bars, lines, numbers or a progress bar, and can sit below, above, over the slider or vertically along either edge.
+
+= Templates =
+
+Ten ready-made starting points - hero, testimonials, logo carousel, team cards, product cards, gallery and more - each one already styled, and all built from core blocks so everything stays editable.
 
 == Installation ==
 
 1. You have a couple options:
-	* Go to Plugins &rarr; Add New and search for "Gutenberg Block for Slick Slider". Once found, click "Install".
-	* Download the Gutenberg Block for Slick Slider from wordpress.org and make sure the folder us zipped. Then upload via Plugins &rarr; Add New &rarr; Upload.
-      * Open the block inserter within the Block Editor (Gutenberg) and search for "slick slider". The plugin should appear and allow you to it install directly. Skip steps 2 and 3.
+	* Go to Plugins &rarr; Add New and search for "Simple Slider Block". Once found, click "Install".
+	* Download the Simple Slider Block from wordpress.org and make sure the folder us zipped. Then upload via Plugins &rarr; Add New &rarr; Upload.
+      * Open the block inserter within the Block Editor (Gutenberg) and search for "simple slider". The plugin should appear and allow you to it install directly. Skip steps 2 and 3.
 2. Activate the plugin through the 'Plugins' screen in WordPress.
 3. Search for the block within the Block Editor (Gutenberg) and begin using.
 
+== Upgrade Notice ==
+
+= 2.0.0 =
+Arrows are now drawn as SVG icons instead of text characters, so existing sliders will look slightly different (and sharper) after updating. All of your settings are preserved. Requires WordPress 6.5 or later.
+
 == Changelog ==
 
-= 1.2.5 =
+= 2.0.0 =
+* Added: Post Slider block - build a slider from a post query, with an optional "inherit the page query" mode for archive templates
+* Added: Seven arrow icons, drawn as SVG instead of text characters
+* Added: Seven arrow placements, including over the slider, above right, and split around the pagination
+* Added: Pagination styles - dots, bars, lines, numbers and a progress bar
+* Added: Seven pagination placements, including over the slider and vertically along either edge
+* Added: Arrow border colour and width, hover colours, spacing and drop shadow settings
+* Added: Ten slider templates with a searchable, filterable picker
+* Improved: Settings are split into the editor's native Settings and Styles tabs instead of one long list
+* Improved: Colours now use the theme palette and support transparency
+* Improved: The editor previews arrows and pagination as you configure them
+* Improved: Slick's CSS and JavaScript now load only on pages that contain a slider
+* Fixed: The duplicated "Arrow Border Style" control, which silently overwrote itself
+* Fixed: The "Simple Arrow" style, which had no styling at all
+* Fixed: Arrow position could not be changed while pagination was enabled
+* Fixed: Duplicate style attribute on the slider element
+* Fixed: Inner block markup such as iframes and SVGs being stripped on the front end
+* Fixed: Translations are now loaded for the editor interface
 * Fixed: Block API version bumped to 3 so the editor renders correctly in WordPress 7.0's iframed block editor
 * Fixed: Text domain now matches the plugin's WordPress.org slug so translations load correctly
 * Improved: Code formatting and inline documentation brought in line with WordPress Coding Standards
-* Added: New contributor
+* Added: New contributor (alkesh7)
 
 = 1.2.4 =
 * Tested: For WordPress 7.0 compatibility
