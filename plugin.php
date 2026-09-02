@@ -5,9 +5,9 @@
  * Description:       A Gutenberg block for creating a simple slider using Slick Slider with core blocks. It is compatible with the core blocks like Cover, Image, and more.
  * Requires at least: 6.5
  * Requires PHP:      7.4
- * Version:           2.0.0
+ * Version:           2.0.1
  * Author:            Kadim Gültekin
- * Author URI:        https://github.com/Arkenon
+ * Author URI:        https://profiles.wordpress.org/arkenon/
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       gb-for-slick-slider

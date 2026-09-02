@@ -1,8 +1,9 @@
 {
 	"name": "gb-for-slick-slider",
-	"version": "2.0.0",
+	"version": "2.0.1",
 	"description": "Gutenberg block for Slick Slider.",
-	"author": "Xidea Themes",
+	"author": "Kadim Gültekin",
+	"author URI": "https://profiles.wordpress.org/arkenon/",
 	"license": "GPL-2.0-or-later",
 	"main": "build/slick-slider/index.js",
 	"scripts": {

@@ -2,9 +2,9 @@
 Contributors:      arkenon, alkesh7
 Tags:              slider, slider block, carousel, gutenberg, block slider
 Requires at least: 6.5
-Tested up to:      7.0
+Tested up to:      7.1
 Requires PHP:      7.4
-Stable tag:        2.0.0
+Stable tag:        2.0.1
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -48,6 +48,9 @@ Ten ready-made starting points - hero, testimonials, logo carousel, team cards, 
 Arrows are now drawn as SVG icons instead of text characters, so existing sliders will look slightly different (and sharper) after updating. All of your settings are preserved. Requires WordPress 6.5 or later.
 
 == Changelog ==
+
+= 2.0.1 =
+* Bumped WordPress tested-up-to version 7.1
 
 = 2.0.0 =
 * Added: Post Slider block - build a slider from a post query, with an optional "inherit the page query" mode for archive templates
